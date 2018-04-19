@@ -520,7 +520,13 @@ if($text=="ヴァネロピ"){
     "text" => "ばねとビンビン！！！"
   ];
 }
-
+if($text=="ビンビン"){
+  $response_format_text = [
+    "type" => "audio",
+    "originalContentUrl" => $_SERVER['SERVER_NAME']."/anta.mp3",
+    "duration"=>"22000"
+  ];
+}
 
 if($type=="join"){
   $response_format_text = [
