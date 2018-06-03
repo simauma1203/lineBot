@@ -82,57 +82,6 @@ function checkCommand($cmd){
 }
 
 
-function retweet(){
-  global $userId,$myId,$response_format_text,$to;
-
-  if($userId==$myId){
-    $parms=[
-      'q'=>'サイン+OR+ギフト+OR+プレゼント フォロー RT+OR+リツイート',
-      'result_type'=>'popular',
-      'count'=>'100'
-    ];
-
-    try{
-      $res=$to->get('search/tweets',$parms)->statuses;
-    }catch(TwistException $e){
-      echo $e->getMessage().PHP_EOL;
-    }
-
-    $rt_count=0;
-    $rt_max=100;
-
-    foreach($res as $tweet){ 
-      try{
-        $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
-        $rt_count++;
-        $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-      }
-      catch(TwistException $e){
-        echo $e->getMessage().PHP_EOL;
-      }
-      if($rt_count==$rt_max){
-        break;
-      } 
-    }
-
-    $response_format_text = [
-      "type" => "text",
-      "text" => "running program...".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT".$rt_max
-    ];
-  
-  }else{
-   $response_format_text = [
-      "type" => "text",
-      "text" => "permission denied"
-    ];
-  }
-  //mada syori
-  $target=[
-    'Present_RT_FR'
-  ];
-}
-
-
 function getTweet($id,$count){
   global  $to,$response_format_text;
 
@@ -327,18 +276,28 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     ];
   }
   if(checkCommand("push")){
-    $message = [
+    $response_format_text = [
       "type" => "text",
       "text" => checkCommand("push")
     ];
-    push($urako,$message);
+    push($urako,$response_format_text);
     $response_format_text = [
       "type" => "text",
       "text" => $profile['displayName']." pushed ".checkCommand("push")
     ];
     push($testgroup,$response_format_text);
   }
+
+  if(checkCommand("test")){
+    $response_format_text = array(
+      "type" => "text",
+      "text" => "hi"
+    );
+    push($groupId,$response_format_text);
+  }
   
+
+
   $url=parse_url(getenv('DATABASE_URL'));
   $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
   $pdo=new PDO($dsn,$url['user'],$url['pass']);
@@ -404,6 +363,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "text" => "https://".$_SERVER['SERVER_NAME']
     );
   }
+
 
   
   $close_flag = pg_close($link);

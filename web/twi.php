@@ -74,7 +74,7 @@ function retweet(){
     
     $status = $to->post('statuses/update', ['status' => $twitext]);
 
-  //mada syori
+  //mada syori<-なにこのしょり？
   $target=[
     'Present_RT_FR'
   ];
@@ -106,4 +106,4 @@ function getTweet($id,$count){
   );
 }
 
-$abc=retweet();
+retweet();
