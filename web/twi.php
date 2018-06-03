@@ -2,7 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
-if($h!=12 && $h!=0)exit();
+if($h!=20 && $h!=4 && $h!=12)exit();
 
 
 $twitext="";
@@ -23,8 +23,7 @@ function retweet(){
   $rt_max=100;
 
     $parms=[
-      'q'=>'サイン+OR+ギフト+OR+プレゼント フォロー RT+OR+リツイート',
-      'result_type'=>'popular',
+      'q'=>'サイン+OR+ギフト+OR+プレゼント+OR+クオカード+OR+商品券 フォロー RT+OR+リツイート min_retweets:400',
       'count'=>'100'
     ];
     try{
@@ -46,8 +45,7 @@ function retweet(){
       } 
     }
     $parms=[
-      'q'=>'サイン+OR+ギフト+OR+プレゼント 声優 フォロー RT+OR+リツイート',
-      'result_type'=>'popular',
+      'q'=>'サイン+OR+台本 声優+OR+アニメ フォロー RT+OR+リツイート min_retweets:400',
       'count'=>'100'
     ];
     try{
