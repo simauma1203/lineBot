@@ -276,16 +276,16 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     ];
   }
   if(checkCommand("push")){
-    $response_format_text = [
+    $message = [
       "type" => "text",
       "text" => checkCommand("push")
     ];
-    push($urako,$response_format_text);
-    $response_format_text = [
+    push($urako,$message;
+    $message = [
       "type" => "text",
       "text" => $profile['displayName']." pushed ".checkCommand("push")
     ];
-    push($testgroup,$response_format_text);
+    push($testgroup,$message);
   }
 
   if(checkCommand("test")){
