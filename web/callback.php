@@ -280,7 +280,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "type" => "text",
       "text" => checkCommand("push")
     ];
-    push($urako,$message;
+    push($urako,$message);
     $message = [
       "type" => "text",
       "text" => $profile['displayName']." pushed ".checkCommand("push")
@@ -289,11 +289,11 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   }
 
   if(checkCommand("test")){
-    $response_format_text = array(
+    $message = array(
       "type" => "text",
       "text" => "hi"
     );
-    push($groupId,$response_format_text);
+    push($groupId,$message);
   }
   
 
