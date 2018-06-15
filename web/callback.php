@@ -4,10 +4,10 @@
 //twitter init
 require 'TwistOAuth.phar';
 $to=new TwistOAuth(
-  '5zHyrNlr2TZ81h8yzJlGrWOPl',//
-  'I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm',//
-  '919202972927586304-TsOE7kvkltMV0GsUTs2NsCytga0uZFf',//
-  'levwq2Zam3N6yEe45GntRvUuqjvJjxwx0BDpduqOCWK5P'//
+  '5zHyrNlr2TZ81h8yzJlGrWOPl',//twiCK
+  'I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm',//twiCS
+  '919202972927586304-TsOE7kvkltMV0GsUTs2NsCytga0uZFf',//twiAT
+  'levwq2Zam3N6yEe45GntRvUuqjvJjxwx0BDpduqOCWK5P'//twiATS
 );
 
 $accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';

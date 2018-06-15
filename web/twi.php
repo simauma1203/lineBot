@@ -2,7 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
-sif($h!=20 && $h!=4 && $h!=12)exit();
+if($h!=20 && $h!=4 && $h!=12)exit();
 
 
 $twitext="";
@@ -36,7 +36,10 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
+        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."')";
+        $count=$pdo->exec($sql);
       }
+
       catch(TwistException $e){
         echo $e->getMessage().PHP_EOL;
       }
@@ -58,7 +61,10 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
+        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."')";
+        $count=$pdo->exec($sql);
       }
+
       catch(TwistException $e){
         echo $e->getMessage().PHP_EOL;
       }
@@ -117,6 +123,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 $sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
 $count=$pdo->exec($sql);
-$close_flag = pg_close($link);
 
 retweet();
+
+$close_flag = pg_close($link);
