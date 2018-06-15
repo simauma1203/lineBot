@@ -365,7 +365,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   }
 
 
-  
+  //table:follow
   $close_flag = pg_close($link);
 
   if(checkCommand("rt")){

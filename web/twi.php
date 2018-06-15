@@ -2,7 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
-if($h!=20 && $h!=4 && $h!=12)exit();
+sif($h!=20 && $h!=4 && $h!=12)exit();
 
 
 $twitext="";
@@ -49,7 +49,7 @@ function retweet(){
       'count'=>'100'
     ];
     try{
-      $res=$to->get('search/tweets',$parms)->statuses;
+      $res=$to->get('https://api.twitter.com/1.1/users/show.json',$parms)->statuses;
     }catch(TwistException $e){
       echo $e->getMessage().PHP_EOL;
     }
@@ -103,5 +103,20 @@ function getTweet($id,$count){
     "text" => '@'.$id.PHP_EOL.$mes
   );
 }
+
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
+$follow=$res->friends_count;
+echo $follow.PHP_EOL;
+$amari=0;
+$amari=$follow-1300;//maxかいてね
+if($amari<0)$amari=0;
+
+$url=parse_url(getenv('DATABASE_URL'));
+$dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
+$pdo=new PDO($dsn,$url['user'],$url['pass']);
+
+$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
+$count=$pdo->exec($sql);
+$close_flag = pg_close($link);
 
 retweet();
