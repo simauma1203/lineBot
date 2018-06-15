@@ -61,7 +61,7 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."')";
+        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."');";
         $count=$pdo->exec($sql);
       }
 
