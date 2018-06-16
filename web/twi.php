@@ -2,7 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
-if($h!=20 && $h!=4 && $h!=12)exit();
+if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 
 $twitext="";
@@ -81,16 +81,12 @@ function retweet(){
         break;
       } 
     }
-
-
-    $twitext="twi.php has run".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."#tamaronbot_log";
+    global $follow;
+    $twitext="twi.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot_log";
     
     $status = $to->post('statuses/update', ['status' => $twitext]);
 
-  //mada syori<-なにこのしょり？
-  $target=[
-    'Present_RT_FR'
-  ];
+  
 }
 
 function getTweet($id,$count){
