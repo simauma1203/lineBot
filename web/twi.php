@@ -116,6 +116,7 @@ function getTweet($id,$count){
 }
 
 $res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
+$follow=0;
 $follow=$res->friends_count;
 echo $follow.PHP_EOL;
 $amari=0;
