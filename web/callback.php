@@ -10,8 +10,13 @@ $to=new TwistOAuth(
   getenv('twiATS')//twiATS
 );
 
+//lineAT
+/*
 $accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
-$channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';
+$channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
+*/
+$accessToken= getenv('lineAT');
+$channelSecret=getenv('lineCS');
 
 //--------------------------------------function
 
