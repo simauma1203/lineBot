@@ -9,19 +9,20 @@ $twitext="";
 //--------------------------------------auth init
 //twitter init
 require 'TwistOAuth.phar';
-/*
+
 $to=new TwistOAuth(
   '5zHyrNlr2TZ81h8yzJlGrWOPl',//
   'I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm',//
   '919202972927586304-TsOE7kvkltMV0GsUTs2NsCytga0uZFf',//
   'levwq2Zam3N6yEe45GntRvUuqjvJjxwx0BDpduqOCWK5P'//
-);*/
+);
+/*
 $to=new TwistOAuth(
   getenv('twiCK'),//twiCK
   getenv('twiCS'),//twiCS
   getenv('twiAT'),//twiAT
   getenv('twiATS')//twiATS
-);
+);*/
 
 //--------------------------------------function
 
@@ -44,7 +45,7 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."');";
+        $sql="INSERT INTO follow(id) VALUES (' ".$tweet->user->screen_name."');";
         $count=$pdo->exec($sql);
       }
 
@@ -69,7 +70,7 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow(id) VALUES (' ".['screen_name'=>$tweet->user->screen_name]."');";
+        $sql="INSERT INTO follow(id) VALUES (' ".$tweet->user->screen_name."');";
         $count=$pdo->exec($sql);
       }
 
