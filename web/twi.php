@@ -27,7 +27,7 @@ $to=new TwistOAuth(
 //--------------------------------------function
 
 function retweet(){
-  global $to,$pdo; 
+  global $to,$pdo,$follow; 
   $rt_count=0;
   $rt_max=100;
 
@@ -81,7 +81,6 @@ function retweet(){
         break;
       } 
     }
-    global $follow;
     $twitext="twi.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot_log";
     
     $status = $to->post('statuses/update', ['status' => $twitext]);
