@@ -11,18 +11,11 @@ $twitext="";
 require 'TwistOAuth.phar';
 
 $to=new TwistOAuth(
-  '5zHyrNlr2TZ81h8yzJlGrWOPl',//
-  'I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm',//
-  '919202972927586304-TsOE7kvkltMV0GsUTs2NsCytga0uZFf',//
-  'levwq2Zam3N6yEe45GntRvUuqjvJjxwx0BDpduqOCWK5P'//
-);
-/*
-$to=new TwistOAuth(
   getenv('twiCK'),//twiCK
   getenv('twiCS'),//twiCS
   getenv('twiAT'),//twiAT
   getenv('twiATS')//twiATS
-);*/
+);
 
 //--------------------------------------function
 
@@ -78,7 +71,7 @@ function retweet(){
         echo $e->getMessage().PHP_EOL;
       }
       if($rt_count==$rt_max){
-        break;
+        //break;
       } 
     }
     $twitext="twi.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot_log";
@@ -126,7 +119,7 @@ $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
-//$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
+$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
 $count=$pdo->exec($sql);
 
 retweet();

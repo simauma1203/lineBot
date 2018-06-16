@@ -387,6 +387,14 @@ if(strpos($text,'こんにち')!==FALSE){
     "text" => "こんにちわ、".$profile['displayName']."さん"
   );
 }
+
+if(strpos($text,'くさ')!==FALSE){
+  $response_format_text = array(
+    "type" => "text",
+    "text" => "くさくさのくさ"
+  );
+}
+
 /*
 if(strpos($text,'ました')!==FALSE){
   $mpos=strpos($text,'ました');
