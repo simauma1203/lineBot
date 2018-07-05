@@ -369,6 +369,13 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     );
   }
 
+  if(checkCommand("dbstat")){
+    $response_format_text = array(
+      "type" => "text",
+      "text" => "DB_URL:".getenv('DATABASE_URL').PHP_EOL.sprintf("pgsql:host=%s".PHP_EOL."dbname=%s",$url['host'],substr($url['path'],1)).PHP_EOL."user:".$url['user'].PHP_EOL."pass:".$url['pass']
+    );
+  }
+
 
   //table:follow
   $close_flag = pg_close($link);

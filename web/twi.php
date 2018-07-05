@@ -2,7 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
-//if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
+if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 
 $twitext="";
@@ -119,8 +119,8 @@ $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
-$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
-$count=$pdo->exec($sql);
+//$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
+//$count=$pdo->exec($sql);
 
 retweet();
 
