@@ -125,6 +125,7 @@ $jsonObj = json_decode($json_string);
 
 $events=$jsonObj->{"events"}[0];
 $type = $jsonObj->{"events"}[0]->{"message"}->{"type"};
+$restype=$jsonObj->{"events"}[0]->{"type"};
 //get message
 $text = $jsonObj->{"events"}[0]->{"message"}->{"text"};
 //get ReplyToken
@@ -516,7 +517,7 @@ if($text=="ビンビン"){
   ];
 }
 
-if($type=="join"){
+if($restype=="join"){
   $response_format_text = [
     "type" => "text",
     "text" => "( *ﾟ▽ﾟ*  っ)З ぽぽー！"
