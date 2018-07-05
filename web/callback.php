@@ -281,6 +281,12 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "previewImageUrl" => $uprof['pictureUrl']
     ];
   }
+  if(checkCommand("phpstat")){
+    $message =[
+      "type" => "text",
+      "text" => __DIR__
+    ];
+
   if(checkCommand("push")){
     $message = [
       "type" => "text",
