@@ -141,7 +141,6 @@ foreach($following_ as $id){
     $rmcnt=$rmcnt+1;
     echo "Removed : ".$id.PHP_EOL;
     if($rmcnt>=$amari)break;
-    
   }
 }
 
