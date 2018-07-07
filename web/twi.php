@@ -2,6 +2,7 @@
 
 $today=getdate();
 $h=$today[hours];
+
 if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 
@@ -11,10 +12,14 @@ $twitext="";
 require 'TwistOAuth.phar';
 
 $to=new TwistOAuth(
-  getenv('twiCK'),//twiCK
-  getenv('twiCS'),//twiCS
-  getenv('twiAT'),//twiAT
-  getenv('twiATS')//twiATS
+  //getenv('twiCK'),//twiCK
+  "5zHyrNlr2TZ81h8yzJlGrWOPl",
+  //getenv('twiCS'),//twiCS
+  "I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm",
+  //getenv('twiAT'),//twiAT
+  "919202972927586304-RQ1NIDXrxmvetUK51Cx1t3MxbZUQpls",
+  //getenv('twiATS')//twiATS
+  "e5uA5jyJVJRlGScVn4DGmMMMQNW9WYLWJQiUGwjDUVKGM"
 );
 
 //--------------------------------------function
@@ -74,7 +79,7 @@ function retweet(){
         //break;
       } 
     }
-    $twitext="twi.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot_log";
+    $twitext="twi.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:$rt_count".PHP_EOL."MaxRT:$rt_max".PHP_EOL."following:.$follow".PHP_EOL."#tamaronbot_log";
     
     $status = $to->post('statuses/update', ['status' => $twitext]);
 
@@ -110,10 +115,13 @@ function getTweet($id,$count){
 $res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
 $follow=0;
 $follow=$res->friends_count;
-echo $follow.PHP_EOL;
 $amari=0;
 $amari=$follow-1300;//maxかいてね
 if($amari<0)$amari=0;
+
+echo $follow.PHP_EOL;
+echo "amari=$amari";
+
 
 $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
@@ -123,5 +131,34 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 //$count=$pdo->exec($sql);
 
 retweet();
+
+
+//-----test---start
+
+
+$my_screen_name="tamaromaron";
+$following = $to->get('friends/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
+$followers = $to->get('followers/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
+
+//var_dump($following);
+$following_=array_reverse($following->ids);//配列を逆順にする
+
+$rmcnt=0;
+
+foreach($following_ as $id){
+  if($amari==0)break;
+  if (!in_array($id, $followers->ids)) {
+    $to->post('friendships/destroy', array('user_id' => $id));
+    $rmcnt=$rmcnt+1;
+    echo "Removed : ".$id.PHP_EOL;
+    if($rmcnt>=$amari)break;
+  }
+}
+
+$twitext="remove:$rmcnt".PHP_EOL."#tamaronbot_log";
+$status = $to->post('statuses/update', ['status' => $twitext]);
+
+//---test---end
+
 
 $close_flag = pg_close($link);
