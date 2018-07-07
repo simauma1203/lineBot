@@ -116,7 +116,7 @@ $res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"t
 $follow=0;
 $follow=$res->friends_count;
 $amari=0;
-$amari=$follow-1300;//maxかいてね
+$amari=$follow-1310;//maxかいてね
 if($amari<0)$amari=0;
 
 echo $follow.PHP_EOL;
