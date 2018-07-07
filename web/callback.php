@@ -287,7 +287,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "text" => __DIR__
     ];
   }
-  
+
   if(checkCommand("push")){
     $message = [
       "type" => "text",
