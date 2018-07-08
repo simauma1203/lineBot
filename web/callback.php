@@ -535,7 +535,7 @@ if($text=="ヴァネロピ"){
 if($text=="ビンビン"){
   $response_format_text = [
     "type" => "audio",
-    "originalContentUrl" => $_SERVER['SERVER_NAME']."/web/anta.mp3",
+    "originalContentUrl" => __DIR__."/anta.mp3",
     "duration"=>"22000"
   ];
 }

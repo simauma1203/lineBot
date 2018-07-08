@@ -3,7 +3,7 @@
 $today=getdate();
 $h=$today[hours];
 
-if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
+//if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 
 $twitext="";
