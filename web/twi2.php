@@ -21,7 +21,7 @@ $to=new TwistOAuth(
 //--------------------------------------function
 
 function retweet(){
-  global $to,$pdo,$follow; 
+  global $to,$pdo,$rt_count,$rt_max,$follow; 
   $rt_count=0;
   $rt_max=100;
 
@@ -75,10 +75,6 @@ function retweet(){
         //break;
       } 
     }
-    $twitext="twi2.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot2_log";
-    
-    $status = $to->post('statuses/update', ['status' => $twitext]);
-
   
 }
 
@@ -120,7 +116,15 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 //$sql="DELETE FROM follow2 ORDER BY add_time LIMIT ".$amari.";";
 //$count=$pdo->exec($sql);
 
-retweet();
+try{
+  retweet();
+}catch(Exception $e){
+  //nop
+}
+
+
+$twitext="twi2.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot2_log";
+$status = $to->post('statuses/update', ['status' => $twitext]);
 
 //-----test---start
 
