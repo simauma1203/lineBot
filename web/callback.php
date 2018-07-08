@@ -546,7 +546,7 @@ if($text=="ヴァネロピ"){
 if($text=="ビンビン"){
   $response_format_text = [
     "type" => "audio",
-    "originalContentUrl" => __DIR__."/anta.m4a",
+    "originalContentUrl" => "https://tamachanapi.herokuapp.com/anta.m4a",
     "duration"=>"21000"
   ];
 }
