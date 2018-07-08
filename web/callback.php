@@ -289,18 +289,18 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   }
 
   if(checkCommand("exec")){
-    exec("twi.php");
+    exec("php twi.php");
     $response_format_text =[
       "type" => "text",
-      "text" => "exec->twi.php"
+      "text" => "exec->'php twi.php'"
     ];
   }
 
   if(checkCommand("exec2")){
-    exec("twi2.php");
+    exec("php twi2.php");
     $response_format_text =[
       "type" => "text",
-      "text" => "exec->twi2.php"
+      "text" => "exec->'php twi2.php'"
     ];
   }
 
