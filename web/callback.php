@@ -288,6 +288,17 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     ];
   }
 
+  if(checkCommand("tweet")){
+    $twitext=checkCommand("tweet");
+    $status = $to->post('statuses/update', ['status' => $twitext]);
+
+    $response_format_text =[
+      "type" => "text",
+      "text" => "DIR:".__DIR__
+    ];
+  }
+
+  
   if(checkCommand("exec")){
     exec("php twi.php");
     $response_format_text =[
