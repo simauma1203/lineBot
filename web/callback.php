@@ -294,7 +294,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
 
     $response_format_text =[
       "type" => "text",
-      "text" => "DIR:".__DIR__
+      "text" => "tweeted:'".checkCommand("tweet")."'"
     ];
   }
 
