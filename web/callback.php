@@ -547,7 +547,7 @@ if($text=="ビンビン"){
   $response_format_text = [
     "type" => "audio",
     "originalContentUrl" => "https://tamachanapi.herokuapp.com/anta.m4a",
-    "duration"=>"21000"
+    "duration"=>"22000"
   ];
 }
 
