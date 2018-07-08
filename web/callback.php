@@ -282,9 +282,17 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     ];
   }
   if(checkCommand("phpstat")){
-    $message =[
+    $response_format_text =[
       "type" => "text",
       "text" => "DIR:".__DIR__
+    ];
+  }
+
+  if(checkCommand("exec")){
+    exec("twi.php");
+    $response_format_text =[
+      "type" => "text",
+      "text" => "exec->twi.php"
     ];
   }
 
