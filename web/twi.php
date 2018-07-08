@@ -129,8 +129,11 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 //$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
 //$count=$pdo->exec($sql);
-
-retweet();
+try{
+  //retweet();
+}catch(Exception $e){
+  //nop
+}
 
 $close_flag = pg_close($link);
 
