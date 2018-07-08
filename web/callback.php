@@ -296,6 +296,14 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     ];
   }
 
+  if(checkCommand("exec2")){
+    exec("twi2.php");
+    $response_format_text =[
+      "type" => "text",
+      "text" => "exec->twi2.php"
+    ];
+  }
+
   if(checkCommand("push")){
     $message = [
       "type" => "text",
