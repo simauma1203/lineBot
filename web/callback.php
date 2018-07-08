@@ -284,7 +284,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   if(checkCommand("phpstat")){
     $message =[
       "type" => "text",
-      "text" => __DIR__
+      "text" => "DIR:".__DIR__
     ];
   }
 

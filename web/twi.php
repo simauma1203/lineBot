@@ -132,6 +132,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 retweet();
 
+$close_flag = pg_close($link);
 
 //-----test---start
 
@@ -159,6 +160,3 @@ $twitext="remove:$rmcnt".PHP_EOL."#tamaronbot_log";
 $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //---test---end
-
-
-$close_flag = pg_close($link);
