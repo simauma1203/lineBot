@@ -139,6 +139,12 @@ $close_flag = pg_close($link);
 
 //-----test---start
 
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
+$follow=0;
+$follow=$res->friends_count;
+$amari=0;
+$amari=$follow-1330;//maxかいてね
+if($amari<0)$amari=0;
 
 $my_screen_name="tamaromaron";
 $following = $to->get('friends/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
