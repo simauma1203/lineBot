@@ -43,8 +43,8 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow(id) VALUES (' ".$tweet->user->screen_name."');";
-        $count=$pdo->exec($sql);
+        //$sql="INSERT INTO follow(id) VALUES (' ".$tweet->user->screen_name."');";
+        //$count=$pdo->exec($sql);
       }
 
       catch(TwistException $e){
@@ -68,8 +68,8 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow (id) VALUES (' ".$tweet->user->screen_name."');";
-        $count=$pdo->exec($sql);
+        //$sql="INSERT INTO follow (id) VALUES (' ".$tweet->user->screen_name."');";
+        //$count=$pdo->exec($sql);
       }
 
       catch(TwistException $e){
@@ -117,11 +117,11 @@ if($amari<0)$amari=0;
 echo $follow.PHP_EOL;
 echo "amari=$amari";
 
-
+/*
 $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
-
+*/
 //$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
 //$count=$pdo->exec($sql);
 try{
@@ -166,4 +166,4 @@ $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //---test---end
 
-$close_flag = pg_close($link);
+//$close_flag = pg_close($link);
