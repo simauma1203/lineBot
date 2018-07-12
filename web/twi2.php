@@ -1,27 +1,33 @@
 <?php
-//this is the program for @tamaron_bot
 
 $today=getdate();
 $h=$today[hours];
+
 //if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
-
+$my_screen_name="tamaron_bot";
+$follow_limit=600;
 $twitext="";
 //--------------------------------------auth init
 //twitter init
 require 'TwistOAuth.phar';
 
 $to=new TwistOAuth(
-  "ProI0Gqar4WCc4gL6KSROxiyM",//twiCK
-  "5Die1lvgPH08i4lyIynwxUgnVm514aHrBJBbVHUHLt9n2J5iAz",//twiCS
-  "947516229731868672-nRK1xsvozjg1r9qvWQr3kZF286D3DNa",//twiAT
-  "ODcIGr71wisFZDrOjuSIl1KBCrRBqmF0Hn35hES7GO7pz"//twiATS
+  //getenv('twiCK'),//twiCK
+  "5zHyrNlr2TZ81h8yzJlGrWOPl",
+  //getenv('twiCS'),//twiCS
+  "I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm",
+  //getenv('twiAT'),//twiAT
+  "919202972927586304-RQ1NIDXrxmvetUK51Cx1t3MxbZUQpls",
+  //getenv('twiATS')//twiATS
+  "e5uA5jyJVJRlGScVn4DGmMMMQNW9WYLWJQiUGwjDUVKGM"
 );
 
 //--------------------------------------function
 
 function retweet(){
-  global $to,$pdo,$rt_count,$rt_max,$follow; 
+  global $to,$rt_count,$rt_max,$follow; 
+  //global $pdo;
   $rt_count=0;
   $rt_max=100;
 
@@ -39,8 +45,8 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow2 (id) VALUES (' ".$tweet->user->screen_name."');";
-        $count=$pdo->exec($sql);
+        //$sql="INSERT INTO follow(id) VALUES (' ".$tweet->user->screen_name."');";
+        //$count=$pdo->exec($sql);
       }
 
       catch(TwistException $e){
@@ -64,8 +70,8 @@ function retweet(){
         $retweeted_status=$to->post("statuses/retweet/{$tweet->id_str}");
         $rt_count++;
         $follow_status=$to->post("friendships/create",['screen_name'=>$tweet->user->screen_name]);            
-        $sql="INSERT INTO follow2 (id) VALUES (' ".$tweet->user->screen_name."');";
-        $count=$pdo->exec($sql);
+        //$sql="INSERT INTO follow (id) VALUES (' ".$tweet->user->screen_name."');";
+        //$count=$pdo->exec($sql);
       }
 
       catch(TwistException $e){
@@ -75,61 +81,43 @@ function retweet(){
         //break;
       } 
     }
-  
 }
 
-function getTweet($id,$count){
-  global  $to,$response_format_text;
-  $mes="";
-  $parms=array(
-    'screen_name'=>$id,
-    'count'=>$count
-  );
-  try{
-    $res=$to->get('statuses/user_timeline',$parms);
-  }catch(TwistException $e){
-    echo $e->getMessage();
-  }
-  foreach($res as $tweet){
-    //echo $tweet->text.PHP_EOL;
-    $head=$tweet->user->name."(".$tweet->user->screen_name.")".PHP_EOL;
-    $mes.=$head.$tweet->text.PHP_EOL.PHP_EOL;
-  }
-  $response_format_text = array(
-    "type" => "text",
-    "text" => '@'.$id.PHP_EOL.$mes
-  );
-}
-
-$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaron_bot"]);
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
 $follow=0;
 $follow=$res->friends_count;
-echo $follow.PHP_EOL;
 $amari=0;
-$amari=$follow-700;//maxかいてね
+$amari=$follow-$follow_limit;//maxかいてね
 if($amari<0)$amari=0;
 
+echo $follow.PHP_EOL;
+echo "amari=$amari";
+
+/*
 $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
-
-//$sql="DELETE FROM follow2 ORDER BY add_time LIMIT ".$amari.";";
+*/
+//$sql="DELETE FROM follow ORDER BY add_time LIMIT ".$amari.";";
 //$count=$pdo->exec($sql);
-
 try{
   retweet();
 }catch(Exception $e){
   //nop
 }
 
-
-$twitext="twi2.php is being runned.".PHP_EOL."--result--".PHP_EOL."RT:".$rt_count.PHP_EOL."MaxRT:".$rt_max.PHP_EOL."following:".$follow.PHP_EOL."#tamaronbot2_log";
+$twitext="exec->php twi.php".PHP_EOL."--result--".PHP_EOL."RT:$rt_count".PHP_EOL."MaxRT:$rt_max".PHP_EOL."following:$follow".PHP_EOL."#tamaronbot2_log";
 $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //-----test---start
 
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>$my_screen_name]);
+$follow=0;
+$follow=$res->friends_count;
+$amari=0;
+$amari=$follow-1330;//maxかいてね
+if($amari<0)$amari=0;
 
-$my_screen_name="tamaron_bot";
 $following = $to->get('friends/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
 $followers = $to->get('followers/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
 
@@ -153,6 +141,4 @@ $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //---test---end
 
-
-
-$close_flag = pg_close($link);
+//$close_flag = pg_close($link);

@@ -83,33 +83,6 @@ function retweet(){
     }
 }
 
-function getTweet($id,$count){
-  global  $to,$response_format_text;
-  $mes="";
-  $parms=array(
-    'screen_name'=>$id,
-    'count'=>$count
-  );
-  try{
-    $res=$to->get('statuses/user_timeline',$parms);
-  }catch(TwistException $e){
-    echo $e->getMessage();
-  }
-  foreach($res as $tweet){
-    //echo $tweet->text.PHP_EOL;
-    /*
-    if($tweet->user->screen_name==$my_screen_name="tamaromaron";){
-      continue;
-    }*/
-    $head=$tweet->user->name."(".$tweet->user->screen_name.")".PHP_EOL;
-    $mes.=$head.$tweet->text.PHP_EOL.PHP_EOL;
-  }
-  $response_format_text = array(
-    "type" => "text",
-    "text" => '@'.$id.PHP_EOL.$mes
-  );
-}
-
 $res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
 $follow=0;
 $follow=$res->friends_count;
