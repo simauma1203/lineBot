@@ -26,7 +26,8 @@ $to=new TwistOAuth(
 //--------------------------------------function
 
 function retweet(){
-  global $to,$pdo,$rt_count,$rt_max,$follow; 
+  global $to,$rt_count,$rt_max,$follow; 
+  //global $pdo;
   $rt_count=0;
   $rt_max=100;
 
