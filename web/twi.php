@@ -130,12 +130,8 @@ try{
   //nop
 }
 
-$twitext="exec->php twi.php".PHP_EOL."--result--".PHP_EOL."RT:$rt_count".PHP_EOL."MaxRT:$rt_max".PHP_EOL."following:.$follow".PHP_EOL."#tamaronbot_log";
+$twitext="exec->php twi.php".PHP_EOL."--result--".PHP_EOL."RT:$rt_count".PHP_EOL."MaxRT:$rt_max".PHP_EOL."following:$follow".PHP_EOL."#tamaronbot_log";
 $status = $to->post('statuses/update', ['status' => $twitext]);
-
-
-
-$close_flag = pg_close($link);
 
 //-----test---start
 
@@ -169,3 +165,5 @@ $twitext="remove:$rmcnt".PHP_EOL."#tamaronbot_log";
 $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //---test---end
+
+$close_flag = pg_close($link);
