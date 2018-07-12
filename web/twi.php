@@ -5,7 +5,8 @@ $h=$today[hours];
 
 //if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
-
+$my_screen_name="tamaromaron";
+$follow_limit=1370;
 $twitext="";
 //--------------------------------------auth init
 //twitter init
@@ -95,9 +96,10 @@ function getTweet($id,$count){
   }
   foreach($res as $tweet){
     //echo $tweet->text.PHP_EOL;
-    if($tweet->user->screen_name=='tamaroning'){
+    /*
+    if($tweet->user->screen_name==$my_screen_name="tamaromaron";){
       continue;
-    }
+    }*/
     $head=$tweet->user->name."(".$tweet->user->screen_name.")".PHP_EOL;
     $mes.=$head.$tweet->text.PHP_EOL.PHP_EOL;
   }
@@ -111,7 +113,7 @@ $res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"t
 $follow=0;
 $follow=$res->friends_count;
 $amari=0;
-$amari=$follow-1310;//maxかいてね
+$amari=$follow-$follow_limit;//maxかいてね
 if($amari<0)$amari=0;
 
 echo $follow.PHP_EOL;
@@ -135,14 +137,13 @@ $status = $to->post('statuses/update', ['status' => $twitext]);
 
 //-----test---start
 
-$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>$my_screen_name]);
 $follow=0;
 $follow=$res->friends_count;
 $amari=0;
 $amari=$follow-1330;//maxかいてね
 if($amari<0)$amari=0;
 
-$my_screen_name="tamaromaron";
 $following = $to->get('friends/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
 $followers = $to->get('followers/ids', array('screen_name' => $my_screen_name,'count'=>'2000'));
 
