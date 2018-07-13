@@ -303,7 +303,10 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       ["ときめきポポロン","tokimeki.mp3"],
       ["Ready Steady Go!","rsg.mp3"],
       ["Blue Compass","blucon.mp3"],
-      ["アンタ名は。" ,"anta.m4a"],
+      ["OH MY シュガーフィーリング","suger.mp3"],
+      ["ゼロイチキセキ","zeroichi.mp3"],
+      ["黄昏のスタアライト","tasogare.mp3"],
+      ["SUNNY DAY SONG","sunny.mp3"],
       ["Twinkling Star","twi.mp3"],
       ["キングレコード","kinreco.mp3"]
     ];
