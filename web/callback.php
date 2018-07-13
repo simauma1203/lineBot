@@ -297,7 +297,39 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "text" => "tweeted:'".checkCommand("tweet")."'"
     ];
   }
-
+  if(checkCommand("play")){
+    $plist=[
+      ["恋愛サーキュレーション","renai.mp3"],
+      ["ときめきポポロン","tokimeki.mp3"],
+      ["Ready Steady Go!","rsg.mp3"],
+      ["Blue Compass","blucon.mp3"],
+      ["アンタ名は。" ,"anta.m4a"],
+      ["Twinkling Star","twi.mp3"],
+      ["キングレコード","kinreco.mp3"]
+    ];
+    if(checkCommand("play")=="list"){
+      $restext="";
+      for($i=0;$i<count($plist);$i++){
+        $restext.=$i.".".$plist[$i][0].PHP_EOL;
+      }
+      $response_format_text =[
+        "type" => "text",
+        "text" => "-play list-".PHP_EOL.$restext.PHP_EOL."usage: /play <number>"
+      ];
+    }else{
+      $response_format_text = [
+        "type" => "audio",
+        "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[checkCommand("play")][1],
+        "duration"=>"22000"
+      ];
+      $message = array(
+        "type" => "text",
+        "text" => "hi"
+      );
+    }
+    
+    push($groupId,$message);
+  }
   
   if(checkCommand("exec")){
     exec("php twi.php");
@@ -430,7 +462,7 @@ if(strpos($text,'こんにち')!==FALSE){
   );
 }
 
-if(strpos($text,'くさ')!==FALSE){
+if(strpos($text,'くさくさ')!==FALSE){
   $response_format_text = array(
     "type" => "text",
     "text" => "くさくさのくさ"
