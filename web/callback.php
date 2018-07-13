@@ -299,16 +299,16 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   }
   if(checkCommand("play")){
     $plist=[
-      ["恋愛サーキュレーション","renai.mp3"],
-      ["ときめきポポロン","tokimeki.mp3"],
-      ["Ready Steady Go!","rsg.mp3"],
-      ["Blue Compass","blucon.mp3"],
-      ["OH MY シュガーフィーリング","suger.mp3"],
-      ["ゼロイチキセキ","zeroichi.mp3"],
-      ["黄昏のスタアライト","tasogare.mp3"],
+      ["恋愛サーキュレーション","renai.m4a"],
+      ["ときめきポポロン","tokimeki.m4a"],
+      ["Ready Steady Go!","rsg.m4a"],
+      ["Blue Compass","blucon.m4a"],
+      ["OH MY シュガーフィーリング","suger.m4a"],
+      ["ゼロイチキセキ","zeroichi.m4a"],
+      ["黄昏のスタアライト","tasogare.m4a"],
       //["SUNNY DAY SONG","sunny.mp3"],
-      ["Twinkling Star","twi.mp3"],
-      ["キングレコード","kinreco.mp3"]
+      ["Twinkling Star","twi.m4a"],
+      ["キングレコード","kinreco.m4a"]
     ];
     if(checkCommand("play")=="list"){
       $restext="";
