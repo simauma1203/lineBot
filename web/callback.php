@@ -322,12 +322,12 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     }else{
       $response_format_text = [
         "type" => "audio",
-        "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[intval(checkCommand("play"))-1][1],
+        "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[intval(checkCommand("play"))+1][1],
         "duration"=>"420000"
       ];
       $message = array(
         "type" => "text",
-        "text" => "play ".$plist[checkCommand("play")][0]
+        "text" => "play ".$plist[intval(checkCommand("play"))+1][0]
       );
       push($groupId,$message);
     }
