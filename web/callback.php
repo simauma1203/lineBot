@@ -326,6 +326,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
         "type" => "text",
         "text" => "hi"
       );
+      push($groupId,$message);
     }
     
     push($groupId,$message);
