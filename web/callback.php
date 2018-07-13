@@ -328,8 +328,6 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       );
       push($groupId,$message);
     }
-    
-    push($groupId,$message);
   }
   
   if(checkCommand("exec")){
