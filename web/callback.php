@@ -313,7 +313,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     if(checkCommand("play")=="list"){
       $restext="";
       for($i=0;$i<count($plist);$i++){
-        $restext.=$i+1.".".$plist[$i][0].PHP_EOL;
+        $restext.=($i+1).".".$plist[$i][0].PHP_EOL;
       }
       $response_format_text =[
         "type" => "text",
