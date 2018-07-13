@@ -323,7 +323,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       $response_format_text = [
         "type" => "audio",
         "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[intval(checkCommand("play"))-1][1],
-        "duration"=>"60000"
+        "duration"=>"420000"
       ];
       $message = array(
         "type" => "text",
