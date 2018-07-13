@@ -324,7 +324,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       ];
       $message = array(
         "type" => "text",
-        "text" => "hi"
+        "text" => "play ".$plist[checkCommand("play")][0]
       );
       push($groupId,$message);
     }
