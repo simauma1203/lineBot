@@ -306,14 +306,14 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       ["OH MY シュガーフィーリング","suger.mp3"],
       ["ゼロイチキセキ","zeroichi.mp3"],
       ["黄昏のスタアライト","tasogare.mp3"],
-      ["SUNNY DAY SONG","sunny.mp3"],
+      //["SUNNY DAY SONG","sunny.mp3"],
       ["Twinkling Star","twi.mp3"],
       ["キングレコード","kinreco.mp3"]
     ];
     if(checkCommand("play")=="list"){
       $restext="";
       for($i=0;$i<count($plist);$i++){
-        $restext.=$i.".".$plist[$i][0].PHP_EOL;
+        $restext.=$i.".".$plist[$i+1][0].PHP_EOL;
       }
       $response_format_text =[
         "type" => "text",
@@ -322,7 +322,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     }else{
       $response_format_text = [
         "type" => "audio",
-        "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[checkCommand("play")][1],
+        "originalContentUrl" => "https://tamachanapi.herokuapp.com/".$plist[intval(checkCommand("play"))-1][1],
         "duration"=>"60000"
       ];
       $message = array(
