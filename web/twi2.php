@@ -6,7 +6,7 @@ $h=$today[hours];
 //if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 $my_screen_name="tamaron_bot";
-$follow_limit=600;
+$follow_limit=1370;
 $twitext="";
 //--------------------------------------auth init
 //twitter init
@@ -14,13 +14,13 @@ require 'TwistOAuth.phar';
 
 $to=new TwistOAuth(
   //getenv('twiCK'),//twiCK
-  "5zHyrNlr2TZ81h8yzJlGrWOPl",
+  "5ProI0Gqar4WCc4gL6KSROxiyM",
   //getenv('twiCS'),//twiCS
-  "I7dB3LupCTrq7FSVjrvmyGIiJ2muWc1mDP7HQqXu2menI3Xsdm",
+  "5Die1lvgPH08i4lyIynwxUgnVm514aHrBJBbVHUHLt9n2J5iAz",
   //getenv('twiAT'),//twiAT
-  "919202972927586304-RQ1NIDXrxmvetUK51Cx1t3MxbZUQpls",
+  "947516229731868672-nRK1xsvozjg1r9qvWQr3kZF286D3DNa",
   //getenv('twiATS')//twiATS
-  "e5uA5jyJVJRlGScVn4DGmMMMQNW9WYLWJQiUGwjDUVKGM"
+  "ODcIGr71wisFZDrOjuSIl1KBCrRBqmF0Hn35hES7GO7pz"
 );
 
 //--------------------------------------function
