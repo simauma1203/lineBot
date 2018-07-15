@@ -9,10 +9,10 @@ function push($gId,$message){
     global $accessToken,$channelSecret;  
     $url = 'https://api.line.me/v2/bot/message/push';
     // データの受信(するものないので不要?)
-    $raw = file_get_contents('php://input');
-    $receive = json_decode($raw, true);
+    //$raw = file_get_contents('php://input');
+    //$receive = json_decode($raw, true);
     // イベントデータのパース(不要？)
-    $event = $receive['events'][0];
+    //$event = $receive['events'][0];
     // ヘッダーの作成
     $headers = ['Content-Type: application/json','Authorization: Bearer '.$accessToken];
     // 送信するメッセージ作成
@@ -31,7 +31,7 @@ function push($gId,$message){
   curl_close($curl);
   
   }
-print("aiueo");
+print("ku");
 
 
 if(checkCommand("test")){
@@ -42,7 +42,7 @@ if(checkCommand("test")){
     push("C8727e59e0381bc8c6a7fef3f7f8e4cf",$message);
   }
   
-
+print("sa");
 /*
 try{
     $pdo=new PDO('mysql:host=us-cdbr-iron-east-04.cleardb.net;dbname=heroku_7f49637117262f3;charset=utf8',
