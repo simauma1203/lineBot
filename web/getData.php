@@ -4,7 +4,7 @@ $postText = $_POST['text'];
 
 //不正な入力はスルー
 if($postText==null){
-    exit;
+    //exit;
 }
 
 $accessToken="v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=";
