@@ -423,6 +423,17 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       "text" => "メモ内容を初期化しました"
     );
   }
+  if(checkCommand("insert")){
+    for($i=1;$i<=15;$i++){
+      $sql="insert into score(uname,score,instdate) value('player$i',$i,now());";
+      $count=$pdo->exec($sql);
+    }
+    
+    $response_format_text = array(
+      "type" => "text",
+      "text" => "success"
+    );
+  }
 
   if(checkCommand("sqlstat")){
     $response_format_text = array(
