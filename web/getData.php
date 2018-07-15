@@ -2,6 +2,10 @@
 
 $postText = $_POST['text'];
 
+if($postText==null){
+    exit;
+}
+
 $accessToken="v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=";
 $channelSecret="dfd80f0736d4a20a2114cc6d4babcd5f";
 
@@ -31,7 +35,6 @@ function push($gId,$message){
   curl_close($curl);
   
   }
-print("ku");
 
 
 
@@ -41,8 +44,7 @@ print("ku");
     );
     push("C8727e59e0381bc8c6a7fef3f7f8e4cf2",$message);
   
-  
-print("sa");
+
 /*
 try{
     $pdo=new PDO('mysql:host=us-cdbr-iron-east-04.cleardb.net;dbname=heroku_7f49637117262f3;charset=utf8',
