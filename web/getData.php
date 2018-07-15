@@ -37,7 +37,7 @@ print("ku");
 
     $message = array(
       "type" => "text",
-      "text" => "ok"
+      "text" => $postText
     );
     push("C8727e59e0381bc8c6a7fef3f7f8e4cf2",$message);
   
