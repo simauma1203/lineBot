@@ -53,7 +53,9 @@ try{
 }*/
 
 
-
+$resultData=[
+    "data"=>"ThisIsContent!"
+];
 
 //読み込んだデータをjson形式で端末に送信する
 header('Content-type: application/json');
