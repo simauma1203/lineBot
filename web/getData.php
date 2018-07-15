@@ -43,7 +43,7 @@ function push($gId,$message){
       "type" => "text",
       "text" => $postText
     );
-    push("C8727e59e0381bc8c6a7fef3f7f8e4cf2",$message);
+    //push("C8727e59e0381bc8c6a7fef3f7f8e4cf2",$message);
   
 
 /*
@@ -59,9 +59,16 @@ $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
+$sql="SELECT * FROM score ORDER BY score DESC;";
+$stmt=$pdo->query($sql);
+while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+    $ttitle = $row["title"];
+    $tr = $row["uname"];
+    print($tr.PHP_EOL);
+}
 
 
-
+print(PHP_EOL."-resData-".PHP_EOL);
 
 
 $resultData="contentFromPHP";
