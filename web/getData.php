@@ -54,10 +54,16 @@ try{
 }catch(PDOException $e){
     print("err");
 }*/
+print("a");
 
 $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
+
+print("i");
+
+$maxCnt=5;
+$cnt=0;
 
 $sql="SELECT * FROM score ORDER BY score DESC;";
 $stmt=$pdo->query($sql);
@@ -65,8 +71,10 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     $ttitle = $row["title"];
     $tr = $row["uname"];
     print($tr.PHP_EOL);
+    $cnt++;
+    if($cnt==$maxCnt)break;
 }
-
+print("u");
 
 print(PHP_EOL."-resData-".PHP_EOL);
 
@@ -77,3 +85,4 @@ $resultData="contentFromPHP";
 header('Content-type: application/json');
 print json_encode($resultData);
 
+print("e");
