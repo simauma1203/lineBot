@@ -48,9 +48,8 @@ $cnt=0;
 $sql="SELECT * FROM score ORDER BY score DESC;";
 $stmt=$pdo->query($sql);
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-    $ttitle = $row["title"];
     $tr = $row["uname"];
-    print($tr.PHP_EOL);
+    //print($tr.PHP_EOL);
     $cnt++;
     if($cnt==$maxCnt)break;
 }
