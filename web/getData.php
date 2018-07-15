@@ -34,13 +34,13 @@ function push($gId,$message){
 print("ku");
 
 
-if(checkCommand("test")){
+
     $message = array(
       "type" => "text",
       "text" => "ok"
     );
     push("C8727e59e0381bc8c6a7fef3f7f8e4cf",$message);
-  }
+  
   
 print("sa");
 /*
