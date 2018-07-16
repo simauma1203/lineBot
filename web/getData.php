@@ -51,7 +51,7 @@ $stmt=$pdo->query($sql);//実行
 
 //読み込んだデータをjson形式で端末に送信する
 header('Content-type: application/json;');
-print("{");
+//print("{");
 $arrArr[]=[];
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     //$tr = $row["uname"];
