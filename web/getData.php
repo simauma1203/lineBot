@@ -67,7 +67,7 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     }
     
 }
-$superVal=["data"=>$subArr];
+$superArr=["data"=>$subArr];
 //print("}");
-print(json_encode($superVal));
+print(json_encode($superArr));
 //print("e");
