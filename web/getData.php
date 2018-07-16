@@ -53,11 +53,11 @@ $stmt=$pdo->query($sql);//実行
 header('Content-type: application/json;');
 
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-    //$tr = $row["uname"];
-    print($row);
-    //print($tr.PHP_EOL);
+    $tr = $row["uname"];
+    //print($row);
+    print($tr.PHP_EOL);
     $cnt++;
     if($cnt==$maxCnt)break;
 }
-print($stmt);
+print($row);
 //print("e");
