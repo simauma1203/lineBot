@@ -49,25 +49,23 @@ $sql="SELECT * FROM score ORDER BY score DESC;";
 $stmt=$pdo->query($sql);//実行
 
 
-//読み込んだデータをjson形式で端末に送信する
+//printな文字列をjsonで送信
 header('Content-type: application/json;');
-//print("{");
+
 $subArr[]=[];
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-    //$tr = $row["uname"];
-    //print($row);
-    //print($tr.PHP_EOL);
-    //print(json_encode($row));
+
     $subArr[$cnt]=$row;
     $cnt++;
     if($cnt==$maxCnt){
         break;
-    }else{
-        //print(",");
+    }
+    if($row==""){
+        break;
     }
     
 }
-$superArr=["data"=>$subArr];
+$superArr=["data"=>$subArr,"count"=>$cnt];
 //print("}");
 print(json_encode($superArr));
 //print("e");
