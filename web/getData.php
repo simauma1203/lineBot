@@ -44,7 +44,8 @@ if($postText=="/getRanking"){
     $cnt=0;
     $limit=5;
     $subArr[]=[];
-    $sql="SELECT * FROM score ORDER BY score DESC　LIMIT $limit;";
+    //score(int) の降順
+    $sql="SELECT * FROM score ORDER BY score DESC LIMIT $limit;";
     $stmt=$pdo->query($sql);//実行
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $subArr[$cnt]=$row;
