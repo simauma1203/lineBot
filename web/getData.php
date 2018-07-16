@@ -59,5 +59,5 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     $cnt++;
     if($cnt==$maxCnt)break;
 }
-//print($row);
+print($stmt);
 //print("e");
