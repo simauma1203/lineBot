@@ -46,21 +46,18 @@ $maxCnt=5;
 $cnt=0;
 
 $sql="SELECT * FROM score ORDER BY score DESC;";
-$stmt=$pdo->query($sql);
-while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-    $tr = $row["uname"];
-    //print($tr.PHP_EOL);
-    $cnt++;
-    if($cnt==$maxCnt)break;
-}
+$stmt=$pdo->query($sql);//実行
 
-//print(PHP_EOL."-resData-".PHP_EOL);
-
-
-$resultData="contentFromPHP";
 
 //読み込んだデータをjson形式で端末に送信する
 header('Content-type: application/json;');
-print json_encode($row);
-
+/*
+while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+    //$tr = $row["uname"];
+    print($row);
+    //print($tr.PHP_EOL);
+    $cnt++;
+    if($cnt==$maxCnt)break;
+}*/
+print($row);
 //print("e");
