@@ -2,10 +2,6 @@
 
 $postText = $_POST['text'];
 
-//不正な入力はスルー
-if($postText==null){
-    //exit;
-}
 
 //db接続
 $url=parse_url(getenv('DATABASE_URL'));
@@ -41,7 +37,7 @@ function push($gId,$message){
   curl_close($curl);
 }
 
-
+$postText="/getRanking";
 
 if($postText=="/getRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
@@ -67,6 +63,4 @@ if($postText=="/getRanking"){
 
 }else if($postText=="/getMap"){
     
-}else{
-    exit;
 }
