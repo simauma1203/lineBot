@@ -425,8 +425,8 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   }
   if(checkCommand("insert")){
     for($i=1;$i<=15;$i++){
-      $sql="insert into score(uname,score,instdate) values('player$i',$i,now());";
-      $count=$pdo->exec($sql);
+      //$sql="insert into score(uname,score,instdate) values('player$i',$i,now());";
+      //$count=$pdo->exec($sql);
     }
     
     $response_format_text = array(
