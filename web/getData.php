@@ -51,15 +51,20 @@ $stmt=$pdo->query($sql);//実行
 
 //読み込んだデータをjson形式で端末に送信する
 header('Content-type: application/json;');
-
+print("{");
 while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     $tr = $row["uname"];
     //print($row);
     //print($tr.PHP_EOL);
     print(json_encode($row));
     $cnt++;
-    if($cnt==$maxCnt)break;
+    if($cnt==$maxCnt){
+        break;
+    }else{
+        print(",");
+    }
+    
 }
-//print("}");
+print("}");
 
 //print("e");
