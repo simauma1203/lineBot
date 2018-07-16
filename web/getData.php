@@ -8,6 +8,7 @@ $url=parse_url(getenv('DATABASE_URL'));
 $dsn=sprintf('pgsql:host=%s;dbname=%s',$url['host'],substr($url['path'],1));
 $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
+/*
 $accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
 $channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';
 $groupid="C8727e59e0381bc8c6a7fef3f7f8e4cf2";
@@ -36,8 +37,7 @@ function push($gId,$message){
   curl_exec($curl);
   curl_close($curl);
 }
-
-$postText="/getRanking";
+*/
 
 if($postText=="/getRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
@@ -50,9 +50,6 @@ if($postText=="/getRanking"){
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $subArr[$cnt]=$row;
         $cnt++;
-        if($cnt==$maxCnt){
-            break;
-        }
         if($row==""){
             break;
         }
@@ -63,5 +60,24 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 
 }else if($postText=="/getMap"){
-    
+    //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
+    $cnt=0;
+    $limit=1;
+    $subArr[]=[];
+    //score(int) の降順
+    $sql="SELECT * FROM map ORDER BY liked DESC LIMIT $limit;";
+    $stmt=$pdo->query($sql);//実行
+    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+        $subArr[$cnt]=$row;
+        $cnt++;
+        if($row==""){
+            break;
+        }
+    }
+    $superArr=["data"=>$subArr,"count"=>$cnt];
+    //printな文字列をjsonで送信
+    header('Content-type: application/json;');
+    print(json_encode($superArr));
 }
+
+
