@@ -56,8 +56,10 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
     $tr = $row["uname"];
     //print($row);
     //print($tr.PHP_EOL);
+    print(json_encode($row));
     $cnt++;
     if($cnt==$maxCnt)break;
 }
-print(json_encode($row));
+//print("}");
+
 //print("e");
