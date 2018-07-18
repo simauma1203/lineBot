@@ -83,7 +83,7 @@ function retweet(){
     }
 }
 
-$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaromaron"]);
+$res = $to->get('https://api.twitter.com/1.1/users/show.json',['screen_name'=>"tamaron_bot"]);
 $follow=0;
 $follow=$res->friends_count;
 $amari=0;
