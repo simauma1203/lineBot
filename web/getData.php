@@ -42,7 +42,7 @@ function push($gId,$message){
 if($postText=="/getRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
     $cnt=0;
-    $limit=5;
+    $limit=10;//取得するカラム数
     $subArr[]=[];
     //score(int) の降順
     $sql="SELECT * FROM score ORDER BY score DESC LIMIT $limit;";
