@@ -38,7 +38,9 @@ function push($gId,$message){
   curl_close($curl);
 }
 */
-$postText="/rankingUpload 12345";
+if($postText==""){
+    $postText="/rankingUpload 12345";
+}
 
 if($postText=="/getRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
