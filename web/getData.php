@@ -81,7 +81,7 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 }elseif(mb_strpos($postText,"/rankingUpload")===0){
     $len=strlen("/rankingUpload");
-    $postText=substr($postText,$pos1+1,strlen($postText)-$len-1);
+    $postText=substr($postText,$len+1,strlen($postText)-$len-1);
     print($postText);
 }
 
