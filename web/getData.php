@@ -81,8 +81,18 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 }elseif(mb_strpos($postText,"/rankingUpload")===0){
     $len=strlen("/rankingUpload");
-    $postText=substr($postText,$len+1,strlen($postText)-$len-1);
-    print($postText);
+    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    print($sql);
+
+
+
+}elseif(mb_strpos($postText,"/mapUpload")===0){
+    $len=strlen("/mapUpload");
+    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    print($sql);
+
+
+
 }
 
 
