@@ -38,6 +38,7 @@ function push($gId,$message){
   curl_close($curl);
 }
 */
+$postText="/rankingUpload 12345";
 
 if($postText=="/getRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
@@ -78,6 +79,10 @@ if($postText=="/getRanking"){
     //printな文字列をjsonで送信
     header('Content-type: application/json;');
     print(json_encode($superArr));
+}elseif(mb_strpos($postText,"/rankingUpload")===0){
+    $len=strlen("/rankingUpload");
+    substr($postText,$pos1+1,strlen($postText)-$len-1);
+    print($postText);
 }
 
 
