@@ -91,10 +91,17 @@ if($postText=="/getRanking"){
 }elseif(mb_strpos($postText,"/mapUpload")===0){
     $len=strlen("/mapUpload");
     $sql=substr($postText,$len+1,strlen($postText)-$len-1);
-    print($sql);
 
+    //print($sql);
+    $pdo->query($sql);
+    print("successful");
 
-
+}elseif(mb_strpos($postText,"/scoreUpload")===0){
+    $len=strlen("/scoreUpload");
+    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    
+    $pdo->query($sql);
+    print("successful");
 }
 
 
