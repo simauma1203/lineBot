@@ -110,6 +110,7 @@ if($postText=="/getRanking"){
 }
 
 function getSysVar($name){
+    global $pdo;
     $sql="select * from sysvar where name='$name';";
     $stmt=$pdo->query($sql);
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
