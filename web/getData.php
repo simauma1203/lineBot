@@ -39,7 +39,7 @@ function push($gId,$message){
 }
 */
 if($postText==""){
-    $postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
+    //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
 if($postText=="/getRanking"){
