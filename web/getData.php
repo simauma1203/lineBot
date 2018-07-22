@@ -84,11 +84,8 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 }else if($postText=="/getNextHandle"){
 
-    $sql="select * from sysvar where name='nexthandle';";
-    $stmt=$pdo->query($sql);
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        $nextHdl=$row['value'];
-    }
+    $nextHdl=getSysVar('nexthandle');
+
     header('Content-type: application/json;');
     print($nextHdl);
 
@@ -112,3 +109,11 @@ if($postText=="/getRanking"){
     print("successful");
 }
 
+function getSysVar($name){
+    $sql="select * from sysvar where name='$name';";
+    $stmt=$pdo->query($sql);
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $sysVar=$row['value'];
+    }
+    return $sysVar;
+}
