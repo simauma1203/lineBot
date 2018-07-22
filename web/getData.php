@@ -84,7 +84,7 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 }else if($postText=="/getNextHandle"){
 
-    $sql="select * from sysvar where name='';";
+    $sql="select * from sysvar where name='nexthandle';";
     $stmt=$pdo->query($sql);
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
         print($row);
