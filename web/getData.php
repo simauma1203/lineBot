@@ -90,8 +90,7 @@ if($postText=="/getRanking"){
     print($nextHdl);
 
     $nextHdl++;
-    $sql="update sysvar set value=$nextHdl where name='nexthandle';";
-    $pdo->query($sql);
+    updateSysVar("nexthandle",$nextHdl);
 
 }elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
@@ -117,4 +116,10 @@ function getSysVar($name){
         $sysVar=$row['value'];
     }
     return $sysVar;
+}
+
+function updateSysVar($name,$value){
+    global $pdo;
+    $sql="update sysvar set value=$value where name='$name';";
+    $pdo->query($sql);
 }
