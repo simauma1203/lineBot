@@ -39,6 +39,7 @@ function push($gId,$message){
 }
 */
 if($postText==""){
+    $postText="/getNextHandle";
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -81,11 +82,13 @@ if($postText=="/getRanking"){
     //printな文字列をjsonで送信
     header('Content-type: application/json;');
     print(json_encode($superArr));
-}elseif(mb_strpos($postText,"/rankingUpload")===0){
-    $len=strlen("/rankingUpload");
-    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
-    print($sql);
+}else if($postText=="/getNextHandle"){
 
+    $sql="select * from sysvar where name='';";
+    $stmt=$pdo->query($sql);
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        print($row);
+    }
 
 
 }elseif(mb_strpos($postText,"/uploadMap")===0){
@@ -103,5 +106,4 @@ if($postText=="/getRanking"){
     $pdo->query($sql);
     print("successful");
 }
-
 
