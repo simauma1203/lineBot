@@ -407,7 +407,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
       $memoContents=$memoContents.$row['memo'].PHP_EOL;
     }
     if($memoCount==0){
-      $memoContents="メモが登録されていません";
+      $memoContents="メモが登録lされていません";
     }
     $response_format_text = array(
       "type" => "text",
@@ -481,7 +481,12 @@ if(strpos($text,'くさくさ')!==FALSE){
     "text" => "くさくさのくさ"
   );
 }
-
+if(strpos($text,'fuck')!==FALSE){
+  $response_format_text = array(
+    "type" => "text",
+    "text" => "HOLY SHIT"
+  );
+}
 /*
 if(strpos($text,'ました')!==FALSE){
   $mpos=strpos($text,'ました');
