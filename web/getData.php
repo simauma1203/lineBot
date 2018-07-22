@@ -93,7 +93,7 @@ if($postText=="/getRanking"){
     print($nextHdl);
 
     $nextHdl++;
-    $sql="update sysvar set $nextHdl where name='nexthandle';";
+    $sql="update sysvar set value=$nextHdl where name='nexthandle';";
     $pdo->query($sql);
 
 }elseif(mb_strpos($postText,"/uploadMap")===0){
