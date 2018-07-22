@@ -87,7 +87,7 @@ if($postText=="/getRanking"){
     $sql="select * from sysvar where name='nexthandle';";
     $stmt=$pdo->query($sql);
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        print($row->value);
+        print($row['value']);
     }
 
 
