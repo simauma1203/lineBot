@@ -87,9 +87,14 @@ if($postText=="/getRanking"){
     $sql="select * from sysvar where name='nexthandle';";
     $stmt=$pdo->query($sql);
     while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        print($row['value']);
+        $nextHdl=$row['value'];
     }
+    header('Content-type: application/json;');
+    print($nextHdl);
 
+    $nextHdl++;
+    $sql="update sysvar set $nextHdl where name='nexthandle';";
+    $pdo->query($sql);
 
 }elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
