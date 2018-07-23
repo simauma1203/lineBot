@@ -95,8 +95,8 @@ elseif(mb_strpos($postText,"/getMap")===0){
         if($data_["uname"]!=$uname){//持ち主が自分ではない
             if(!in_array($data_["handle"],$played)){//handleが未プレイ
                 //数字だけだと文字扱いにされそう
-                $data_["uname"]=(string)$data_["uname"];
-                $data_["mapcode"]=(string)$data_["mapcode"];
+                //$data_["uname"]=(string)$data_["uname"];
+                //$data_["mapcode"];
                 $ret=$data_;
                 break;
             }
@@ -105,6 +105,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     header('Content-type: application/json;');
     print(json_encode($ret));
+
 
 
 
