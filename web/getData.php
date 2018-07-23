@@ -10,7 +10,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText='/getMap {"uname":"watasi","rate":810,"handle":[4,5,6]}';
+    $postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
