@@ -77,7 +77,11 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
     //配列にする
-    $data = $stmt->fetchAll();
+    $data=[];
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        $data[]=$row;
+    }
+    //$data = $stmt->fetchAll();
 
     //ソート用配列
     foreach($data as $val){
