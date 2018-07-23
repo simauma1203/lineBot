@@ -48,7 +48,17 @@ else if($postText=="/getNextHdl"){
 }
 elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
-    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    $json=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $data=json_decode($json,true);
+    $uname=$data["uname"];
+    $rate=$data["rate"];
+    $nextHdl=$data["nexthdl"];
+    $mapcode=$data["mapcode"];//array
+
+    $mapcode=str_replace('"',"E'"+'"'+"'");
+    
+    $sql="/uploadMap insert into map values('$uname','$mapcode_',$rate,$nextHdl,now())";
 
     //print($sql);
     $pdo->query($sql);
