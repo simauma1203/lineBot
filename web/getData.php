@@ -92,13 +92,13 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $stmt=$pdo->query($sql);
 
     $data = $stmt->fetchAll();
-    print($data);
+    print_r($data);
 
     //ソート用配列
     foreach($data as $val){
         $sort[]=$val["rate"];
     }
-    print($sort);
+    print_r($sort);
     //sort
     array_multisort($sort, SORT_ASC, $data);
     //foreach($data as )
