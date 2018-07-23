@@ -92,7 +92,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $stmt=$pdo->query($sql);
 
 
-    $stmt_=$stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt_[]=$stmt->fetch(PDO::FETCH_ASSOC);
     print($stmt-> fetch(PDO::FETCH_ASSOC));
 
     //ソート用配列
@@ -103,7 +103,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     //sort
     array_multisort($sort, SORT_ASC, $stmt);
 
-    
+
     $hdlArr=[];
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $hdlArr[]=$row["uname"];
