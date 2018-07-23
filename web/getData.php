@@ -96,8 +96,11 @@ elseif(mb_strpos($postText,"/getMap")===0){
             if(!in_array($data_["handle"],$played)){//handleが未プレイ
                 //数字だけだと文字扱いにされそう
                 //$data_["uname"]=(string)$data_["uname"];
-                $data_["mapcode"]=(array)$data_["mapcode"];
+                //substr($data_["mapcode"]1,);
+
                 print(json_decode($data_["mapcode"]));
+                //$data_["mapcode"]=json_encode($data_["mapcode"]);
+                //print(json_decode($data_["mapcode"]));
                 $ret=$data_;
                 break;
             }
