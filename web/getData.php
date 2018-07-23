@@ -58,7 +58,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     $mapcode=json_encode($data["mapcode"]);
     //$mapcode=str_replace('"',"E'"+'"'+"'");
     
-    $sql="/uploadMap insert into map values('$uname','$mapcode',$rate,$nextHdl,now());";
+    $sql="insert into map values('$uname','$mapcode',$rate,$nextHdl,now());";
     print($sql);
     //print($sql);
     $pdo->query($sql);
