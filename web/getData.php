@@ -107,8 +107,8 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
 
     
 
-    header('Content-type: application/json;');
-    print(json_encode($hdlArr));
+    //header('Content-type: application/json;');
+    //print(json_encode($hdlArr));
 }
 
 elseif(mb_strpos($postText,"/getMap")===0){
