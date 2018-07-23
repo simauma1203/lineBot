@@ -91,11 +91,12 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map";
     $stmt=$pdo->query($sql);
 
-    foreach ((array) $stmt as $key => $value) {
-        $sort[$key] = abs($rate-$value['handle']);
+    foreach ((array) $stmt as $key) {
+        print $key;
+        //$sort[$key] = abs($rate-$value['handle']);
     }
-    array_multisort($sort, SORT_ASC, $stmt);
-    print_r($array);
+    //array_multisort($sort, SORT_ASC, $stmt);
+    //print_r($array);
 
 
     $hdlArr=[];
