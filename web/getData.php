@@ -56,7 +56,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     $nextHdl=$data["nexthdl"];
 
     $mapcode=json_encode($data["mapcode"]);
-    $mapcode=str_replace('"',"E'"+'"'+"'");
+    //$mapcode=str_replace('"',"E'"+'"'+"'");
     
     $sql="/uploadMap insert into map values('$uname','$mapcode',$rate,$nextHdl,now());";
 
@@ -65,7 +65,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     print($data["uname"]);
     print($data["rate"]);
     print($data["nexthdl"]);
-    print($data["mapcode"]);
+    print_r($data["mapcode"]);
 
     print("successful");
 
