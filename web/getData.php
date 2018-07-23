@@ -10,7 +10,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText="/getHdlArr 25";
+    $postText="/getHdlArr 810";
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -91,17 +91,19 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
-    print($stmt);
 
-    foreach ($stmt as $key=>$content) {
-        //print($content);
-        //print $content["uname"];
-        //$sort[$key] = abs($rate-$content['handle']);
+    $stmt_=$stmt->fetch(PDO::FETCH_ASSOC);
+    print($stmt-> fetch(PDO::FETCH_ASSOC));
+
+    //ソート用配列
+    $sort=[];
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $sort[]=abs($rate-$row["rate"]);
     }
-    //array_multisort($sort, SORT_ASC, $stmt);
-    //print_r($stmt);
+    //sort
+    array_multisort($sort, SORT_ASC, $stmt);
 
-
+    
     $hdlArr=[];
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $hdlArr[]=$row["uname"];
