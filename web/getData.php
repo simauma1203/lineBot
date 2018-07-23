@@ -96,19 +96,19 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
         $sort[$key] = abs($rate-$content['handle']);
     }
     array_multisort($sort, SORT_ASC, $stmt);
-    //print_r($sort);
+    print_r($stmt);
 
 
     $hdlArr=[];
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $hdlArr[]=$row["uname"];
     }
-    print($stmt);
+    //print($stmt);
 
     
 
-    //header('Content-type: application/json;');
-    //print(json_encode($hdlArr));
+    header('Content-type: application/json;');
+    print(json_encode($hdlArr));
 }
 
 elseif(mb_strpos($postText,"/getMap")===0){
