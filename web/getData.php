@@ -35,26 +35,6 @@ if($postText=="/getRanking"){
     print(json_encode($superArr));
 
 }
-else if($postText=="/getMap"){
-    //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
-    $cnt=0;
-    $limit=1;
-    $subArr[]=[];
-    //score(int) の降順
-    $sql="SELECT * FROM map ORDER BY liked DESC LIMIT $limit;";
-    $stmt=$pdo->query($sql);//実行
-    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-        $subArr[$cnt]=$row;
-        $cnt++;
-        if($row==""){
-            break;
-        }
-    }
-    $superArr=["data"=>$subArr,"count"=>$cnt];
-    //printな文字列をjsonで送信
-    header('Content-type: application/json;');
-    print(json_encode($superArr));
-}
 else if($postText=="/getNextHdl"){
 
     $nextHdl=getSysVar('nexthandle');
@@ -93,22 +73,23 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
 
     //配列にする
     $data = $stmt->fetchAll();
-    print_r($data);
+    //print_r($data);
 
     //ソート用配列
     foreach($data as $val){
         $sort[]=abs($rate-$val["rate"]);
     }
-    print_r($sort);
+    //print_r($sort);
+
     //sort
     array_multisort($sort, SORT_ASC, $data);
 
-
+    //返す配列
     $hdlArr=[];
     foreach($data as $data_){
         $hdlArr[]=$data_["handle"];
     }
-    print_r($hdlArr);
+    //print_r($hdlArr);
     
 
     header('Content-type: application/json;');
