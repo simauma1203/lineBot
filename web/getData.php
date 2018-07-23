@@ -10,7 +10,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText="/getHdlArr";
+    $postText="/getHdlArr 25";
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -92,10 +92,11 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $stmt=$pdo->query($sql);
 
     foreach ((array) $stmt as $key => $value) {
-        $sort[$key] = $value['handle'];
+        $sort[$key] = abs($rate-$value['handle']);
     }
     array_multisort($sort, SORT_ASC, $stmt);
     print_r($array);
+
 
     $hdlArr=[];
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
