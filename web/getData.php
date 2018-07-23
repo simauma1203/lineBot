@@ -105,8 +105,8 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     header('Content-type: application/json;');
     print(json_encode($ret));
-
-
+    print(json_encode(["a","b"]));
+    print(json_encode([1,2]));
 
 
 }
