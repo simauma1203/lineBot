@@ -100,8 +100,8 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $len=strlen("/getMap");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
     print($json);
-    $prof=json_decode($json);
-    print(json_decode($json));
+    $prof=json_decode($json,true);
+    print($prof);
     $uname=$prof["uname"];
     $rate=$prof["rate"];
     $played=$prof["handle"];
