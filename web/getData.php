@@ -59,15 +59,16 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     //$mapcode=str_replace('"',"E'"+'"'+"'");
     
     $sql="/uploadMap insert into map values('$uname','$mapcode',$rate,$nextHdl,now());";
-
+    print($sql);
     //print($sql);
     $pdo->query($sql);
+    /*
     print($data["uname"]);
     print($data["rate"]);
     print($data["nexthdl"]);
     print_r($data["mapcode"]);
 
-    print("successful");
+    print("successful");*/
 
 }
 elseif(mb_strpos($postText,"/uploadScore")===0){
