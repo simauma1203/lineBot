@@ -88,7 +88,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $rateStr=substr($postText,$len+1,strlen($postText)-$len-1);
     $rate=intval($rateStr);
 
-    $sql="select * from map";
+    $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
     foreach ((array) $stmt as $key) {
