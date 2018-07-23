@@ -50,7 +50,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
 
-    $data=json_encode($json,true);
+    $data=json_decode($json,true);
     $uname=$data["uname"];
     $rate=$data["rate"];
     $nextHdl=$data["nexthdl"];
