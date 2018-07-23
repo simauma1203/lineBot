@@ -89,7 +89,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     foreach($data as $data_){
         $hdlArr[]=$data_["handle"];
     }
-    print_r($hdlArr);
+    //print_r($hdlArr);
     
 
     header('Content-type: application/json;');
