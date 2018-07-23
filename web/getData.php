@@ -91,8 +91,10 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
-    foreach ((array) $stmt as $key=>$content) {
-        print($content);
+    print($stmt);
+
+    foreach ($stmt as $key=>$content) {
+        //print($content);
         //print $content["uname"];
         //$sort[$key] = abs($rate-$content['handle']);
     }
