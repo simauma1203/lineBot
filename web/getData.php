@@ -91,6 +91,12 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map";
     $stmt=$pdo->query($sql);
 
+    foreach ((array) $stmt as $key => $value) {
+        $sort[$key] = $value['handle'];
+    }
+    array_multisort($sort, SORT_ASC, $stmt);
+    print_r($array);
+
     $hdlArr=[];
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $hdlArr[]=$row["uname"];
