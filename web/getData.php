@@ -91,25 +91,20 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
-    //stmt_にコピーてきな
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        $stmt_[]=$row;
-    }
-    print($stmt_);
+    $data = $stmt->fetchAll();
+    print($data);
 
     //ソート用配列
-    $sort=[];
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        $sort[]=abs($rate-$row["rate"]);
+    foreach($data as $val[]){
+        $sort[]=$val["rate"];
     }
+    print($sort);
     //sort
-    array_multisort($sort, SORT_ASC, $stmt);
-
+    array_multisort($sort, SORT_ASC, $data);
+    //foreach($data as )
 
     $hdlArr=[];
-    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
-        $hdlArr[]=$row["uname"];
-    }
+    
     //print($stmt);
 
     
