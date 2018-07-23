@@ -95,7 +95,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     print($data);
 
     //ソート用配列
-    foreach($data as $val[]){
+    foreach($data as $val){
         $sort[]=$val["rate"];
     }
     print($sort);
