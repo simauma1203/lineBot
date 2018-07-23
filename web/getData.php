@@ -98,7 +98,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
                 //$data_["uname"]=(string)$data_["uname"];
                 //substr($data_["mapcode"]1,);
 
-                print(json_decode($data_["mapcode"]));
+                //print(json_decode($data_["mapcode"]));
                 //$data_["mapcode"]=json_encode($data_["mapcode"]);
                 //print(json_decode($data_["mapcode"]));
                 $ret=$data_;
