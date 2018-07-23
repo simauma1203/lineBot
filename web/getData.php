@@ -91,22 +91,24 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
+    //配列にする
     $data = $stmt->fetchAll();
     print_r($data);
 
     //ソート用配列
     foreach($data as $val){
-        $sort[]=$val["rate"];
+        $sort[]=abs($rate-$val["rate"]);
     }
     print_r($sort);
     //sort
     array_multisort($sort, SORT_ASC, $data);
-    //foreach($data as )
+
 
     $hdlArr=[];
-    
-    //print($stmt);
-
+    foreach($data as $data_){
+        $hdlArr[]=$data["handle"];
+    }
+    print_r($hdlArr);
     
 
     header('Content-type: application/json;');
