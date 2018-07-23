@@ -67,9 +67,9 @@ elseif(mb_strpos($postText,"/uploadScore")===0){
 elseif(mb_strpos($postText,"/getMap")===0){
     $len=strlen("/getMap");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
-    print($json);
+    //print($json);
     $prof=json_decode($json,true);
-    print($prof);
+    //print($prof);
     $uname=$prof["uname"];
     $rate=$prof["rate"];
     $played=$prof["handle"];
