@@ -92,11 +92,12 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $stmt=$pdo->query($sql);
 
     foreach ((array) $stmt as $key=>$content) {
+        print($content);
         //print $content["uname"];
-        $sort[$key] = abs($rate-$content['handle']);
+        //$sort[$key] = abs($rate-$content['handle']);
     }
-    array_multisort($sort, SORT_ASC, $stmt);
-    print_r($stmt);
+    //array_multisort($sort, SORT_ASC, $stmt);
+    //print_r($stmt);
 
 
     $hdlArr=[];
