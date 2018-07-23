@@ -91,9 +91,11 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
 
-
-    $stmt_[]=$stmt->fetch(PDO::FETCH_ASSOC);
-    print($stmt-> fetch(PDO::FETCH_ASSOC));
+    //stmt_にコピーてきな
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $stmt_[]=$row;
+    }
+    print($stmt_);
 
     //ソート用配列
     $sort=[];
