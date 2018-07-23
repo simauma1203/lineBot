@@ -103,7 +103,7 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $hdlArr[]=$row["uname"];
     }
-    print $stmt;
+    print($stmt);
 
     
 
