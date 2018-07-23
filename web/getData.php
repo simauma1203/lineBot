@@ -10,7 +10,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText='/getMap {"uname":"watasi","rate":810,"handle":[]}';
+    $postText='/getMap {"uname":"watasi","rate":810,"handle":[4,5,6]}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -63,38 +63,6 @@ elseif(mb_strpos($postText,"/uploadScore")===0){
     print("successful");
 }
 
-elseif(mb_strpos($postText,"/getHdlArr")===0){
-    $len=strlen("/getHdlArr");
-    $rateStr=substr($postText,$len+1,strlen($postText)-$len-1);
-    $rate=intval($rateStr);
-
-    $sql="select * from map;";
-    $stmt=$pdo->query($sql);
-
-    //配列にする
-    $data = $stmt->fetchAll();
-    //print_r($data);
-
-    //ソート用配列
-    foreach($data as $val){
-        $sort[]=abs($rate-$val["rate"]);
-    }
-    //print_r($sort);
-
-    //sort
-    array_multisort($sort, SORT_ASC, $data);
-
-    //返す配列
-    $hdlArr=[];
-    foreach($data as $data_){
-        $hdlArr[]=$data_["handle"];
-    }
-    //print_r($hdlArr);
-    
-
-    header('Content-type: application/json;');
-    print(json_encode(["data"=>$hdlArr]));
-}
 
 elseif(mb_strpos($postText,"/getMap")===0){
     $len=strlen("/getMap");
@@ -105,9 +73,32 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $uname=$prof["uname"];
     $rate=$prof["rate"];
     $played=$prof["handle"];
-    print($uname);
-    print($rate);
-    print($played);
+
+    $sql="select * from map;";
+    $stmt=$pdo->query($sql);
+    //配列にする
+    $data = $stmt->fetchAll();
+
+    //ソート用配列
+    foreach($data as $val){
+        $sort[]=abs($rate-$val["rate"]);
+    }
+    //sort
+    array_multisort($sort, SORT_ASC, $data);
+
+    
+    foreach($data as $data_){
+        if($data_["uname"]!=$uname){//持ち主が自分ではない
+            if(!in_array($data_["handle"],$played)){//handleが未プレイ
+                $ret=$data_;
+                break;
+            }
+        }
+    }
+
+    header('Content-type: application/json;');
+    print(json_encode($ret));
+
 
 
 }
