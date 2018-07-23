@@ -10,7 +10,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText="/getHdlArr 810";
+    $postText='/getMap {"uname":"watasi","rate":810,"handle":[]}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -98,8 +98,17 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
 
 elseif(mb_strpos($postText,"/getMap")===0){
     $len=strlen("/getMap");
-    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    $json=substr($postText,$len+1,strlen($postText)-$len-1);
    
+    $prof=json_decode($json);
+
+    $uname=$prof["uname"];
+    $rate=$prof["rate"];
+    $played=$prof["handle"];
+    print($uname);
+    print($rate);
+    print($played);
+
 
 }
 
