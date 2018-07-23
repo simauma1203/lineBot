@@ -89,11 +89,11 @@ elseif(mb_strpos($postText,"/getHdlArr")===0){
     foreach($data as $data_){
         $hdlArr[]=$data_["handle"];
     }
-    //print_r($hdlArr);
+    print_r($hdlArr);
     
 
     header('Content-type: application/json;');
-    print(json_encode($hdlArr));
+    print(json_encode(["data"=>$hdlArr]));
 }
 
 elseif(mb_strpos($postText,"/getMap")===0){
