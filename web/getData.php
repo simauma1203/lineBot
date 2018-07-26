@@ -136,10 +136,11 @@ elseif(mb_strpos($postText,"/uploadScore")===0){
 
     $uid=$data["uid"];
     $score=$data["score"];
+    $uname=getElementFromUinfo($uid,"name");
 
-    pushM("ID:$uid earn $score pts!");
+    pushM("ID:$uid($uname) earn $score pts!");
 
-    $sql="update set score=$score where uid=$uid;";
+    $sql="update uinfo set score=$score where uid=$uid;";
 
     $pdo->query($sql);
     print("successful");
