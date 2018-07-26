@@ -159,7 +159,6 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $played=$prof["playedhandle"];//自分の対戦履歴
     $rate =getElementFromUinfo($uid,"rate");
 
-    pushM("$uid 's rate is $rate");
 
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
@@ -176,8 +175,6 @@ elseif(mb_strpos($postText,"/getMap")===0){
     }
     //sort
     array_multisort($sort, SORT_ASC, $data);
-
-    pushM("sort comp");
 
     $isEnough=false;
     //先頭から探索
