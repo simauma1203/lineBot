@@ -2,6 +2,34 @@
 
 $postText = $_POST['text'];
 
+$accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
+$channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
+$groupod="C8727e59e0381bc8c6a7fef3f7f8e4cf";
+function push($gId,$message){
+    global $accessToken,$channelSecret;  
+    $url = 'https://api.line.me/v2/bot/message/push';
+    // データの受信(するものないので不要?)
+    $raw = file_get_contents('php://input');
+    $receive = json_decode($raw, true);
+    // イベントデータのパース(不要？)
+    $event = $receive['events'][0];
+    // ヘッダーの作成
+    $headers = ['Content-Type: application/json','Authorization: Bearer '.$accessToken];
+    // 送信するメッセージ作成
+    $body = json_encode(array('to' => $gId,'messages'=> array($message)));  // 複数送る場合は、array($mesg1,$mesg2) とする。
+    // 送り出し用
+    $options = [
+      CURLOPT_URL => $url,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_HTTPHEADER => $headers,
+      CURLOPT_POSTFIELDS => $body
+    ];
+  $curl = curl_init();
+  curl_setopt_array($curl, $options);
+  curl_exec($curl);
+  curl_close($curl);
+}
 
 //db接続
 $url=parse_url(getenv('DATABASE_URL'));
@@ -10,7 +38,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
+    //$postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
@@ -54,41 +82,37 @@ else if($postText=="/getRateRanking"){
     //printな文字列をjsonで送信
     header('Content-type: application/json;');
     print(json_encode($superArr));
-
 }
-else if($postText=="/getNextHdl"){
 
-    $nextHdl=getSysVar('nexthandle');
-
-    header('Content-type: application/json;');
-    print($nextHdl);
-
-    $nextHdl++;
-    updateSysVar("nexthandle",$nextHdl);
-
-}
+//マップをアップロード
+//mapDB require :uid,mapcode,rate
 elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
 
     $data=json_decode($json,true);
-    $uname=$data["uname"];
-    $rate=$data["rate"];
-    $nextHdl=$data["nexthdl"];
 
+    //unityから送られたデータを抽出
+    $uid=$data["uid"];
     $mapcode=json_encode($data["mapcode"]);
-    //$mapcode=str_replace('"',"E'"+'"'+"'");
     
-    $sql="insert into map values('$uname','$mapcode',$rate,$nextHdl,now());";
-    
+    //uidからrateを取得する
+    $rate=getElementFromUinfo($uid,"rate");
+
+    //マップハンドルの空きを取得
+    $handle=getHandle();
+
+    $sql="insert into map values($uid,'$mapcode',$rate,$handle);";
     $pdo->query($sql);
-    /*
+
+    header('Content-type: application/json;');
     print($data["uname"]);
     print($data["rate"]);
     print($data["nexthdl"]);
     print_r($data["mapcode"]);
+    
+    print("successful");
 
-    print("successful");*/
 
 }
 elseif(mb_strpos($postText,"/uploadScore")===0){
@@ -168,3 +192,19 @@ function updateSysVar($name,$value){
     $pdo->query($sql);
 }
 
+function getHandle(){
+    global $pdo;
+    $ret=getSysVar("nexthandle");
+    updateSysVar("nexthandle",$ret+1);
+    return ret;
+}
+
+function getElementFromUinfo($uid,$elementName){
+    global $pdo;
+    $sql="select * from uinfo where uid=$uid;";
+    $stmt=$pdo->query($sql);
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $ret=$row[$elementName];
+    }
+    return $ret;
+}
