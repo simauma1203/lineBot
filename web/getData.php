@@ -81,7 +81,7 @@ if($postText=="/getScoreRanking"){
 else if($postText=="/getRateRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
     $cnt=0;
-    $limit=20;//取得するカラム数
+    $limit=20;//取得するレコード数
     $subArr[]=[];
     //score(int) の降順
     $sql="SELECT * FROM uinfo ORDER BY rate DESC LIMIT $limit;";
