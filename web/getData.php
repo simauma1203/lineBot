@@ -14,13 +14,13 @@ if($postText==""){
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
-if($postText=="/getRanking"){
+if($postText=="/getScoreRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
     $cnt=0;
     $limit=20;//取得するカラム数
     $subArr[]=[];
     //score(int) の降順
-    $sql="SELECT * FROM score ORDER BY score DESC LIMIT $limit;";
+    $sql="SELECT * FROM uinfo ORDER BY score DESC LIMIT $limit;";
     $stmt=$pdo->query($sql);//実行
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $subArr[$cnt]=$row;
@@ -41,7 +41,7 @@ else if($postText=="/getRateRanking"){
     $limit=20;//取得するカラム数
     $subArr[]=[];
     //score(int) の降順
-    $sql="SELECT * FROM rate ORDER BY score DESC LIMIT $limit;";
+    $sql="SELECT * FROM uinfo ORDER BY rate DESC LIMIT $limit;";
     $stmt=$pdo->query($sql);//実行
     while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
         $subArr[$cnt]=$row;
