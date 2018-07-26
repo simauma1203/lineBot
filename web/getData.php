@@ -155,8 +155,8 @@ elseif(mb_strpos($postText,"/getMap")===0){
     //print($json);
     $data=json_decode($json,true);
     //print($prof);
-    $uid=$data["uid"];
-    $played=$prof["playedhandle"];
+    $uid=$data["uid"];//自分の名前
+    $played=$prof["playedhandle"];//自分の対戦履歴
     $rate =getElementFromUinfo($uid,"rate");
 
 
@@ -186,6 +186,9 @@ elseif(mb_strpos($postText,"/getMap")===0){
             }
         }
     }
+
+    pushM($ret_["mapcodejson"]);
+
     $ret=[
         "uid" => $ret_["uid"],
         "uname" => getElementFromUinfo($ret_["uid"],"uname"),
@@ -193,7 +196,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
         "mapcodejson" => $ret_["mapcodejson"],
         "handle" => $ret_["handle"]
     ];
-    pushM(print_r($ret,true));
+    
 
     header('Content-type: application/json;');
     print(json_encode($ret));
