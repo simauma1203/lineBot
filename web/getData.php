@@ -55,6 +55,8 @@ if($postText==""){
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
 
+
+
 if($postText=="/getScoreRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
     $cnt=0;
@@ -194,16 +196,24 @@ elseif(mb_strpos($postText,"/getMap")===0){
         "handle" => $ret_["handle"]
     ];
     
-    
-
     header('Content-type: application/json;');
     print(json_encode($ret));
     //print(json_encode(["a","b"]));
     //print(json_encode([1,2]));
-
-
 }
+elseif(mb_strpos($postText,"/userRegister")===0){
 
+    $len=strlen("/userRegister");
+    $uname=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $uid=getId();
+
+    $sql="insert into uinfo values($uid,'$uname',0,0);";
+    $pdo->query($sql);
+
+    header('Content-type: application/json;');
+    print($uid);
+}
 
 function getSysVar($name){
     global $pdo;
@@ -225,6 +235,14 @@ function getHandle(){
     global $pdo;
     $ret=getSysVar("nexthandle");
     updateSysVar("nexthandle",$ret+1);
+    return $ret;
+}
+
+//空きユーザーID取得 
+function getId(){
+    global $pdo;
+    $ret=getSysVar("nextid");
+    updateSysVar("nextid",$ret+1);
     return $ret;
 }
 
