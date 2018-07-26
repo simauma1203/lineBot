@@ -215,6 +215,23 @@ elseif(mb_strpos($postText,"/userRegister")===0){
     print($uid);
 }
 
+elseif(mb_strpos($postText,"/getUname")===0){
+
+    $len=strlen("/userUname");
+    $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $uid=intval($uidStr);
+
+    pushM("ID:$uid 's name is...");
+    $uname=getElementFromUinfo($uid,"uname");
+    pushM("$uname desuyo");
+
+    header('Content-type: application/json;');
+    print($uname);
+}
+
+
+
 function getSysVar($name){
     global $pdo;
     $sql="select * from sysvar where name='$name';";
