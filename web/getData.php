@@ -107,7 +107,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
 
     //unityから送られたデータを抽出
     $uid=$data["uid"];
-    $mapcode=json_encode($data["mapcode"]);
+    $mapcodejson=json_encode($data["mapcode"]);
     
     //uidからrateを取得する
     $rate=getElementFromUinfo($uid,"rate");
@@ -115,7 +115,8 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     //マップハンドルの空きを取得
     $handle=getHandle();
 
-    $sql="insert into map values($uid,'$mapcode',$rate,$handle);";
+    $sql="insert into map values($uid,'$mapcodejson',$rate,$handle);";
+    pushM($sql);
     $pdo->query($sql);
 
     header('Content-type: application/json;');
@@ -129,20 +130,19 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
 elseif(mb_strpos($postText,"/uploadScore")===0){
     $len=strlen("/uploadScore");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
-    
-    pushM($json);
 
     $data=json_decode($json,true);
 
     $uid=$data["uid"];
     $score=$data["score"];
     $uname=getElementFromUinfo($uid,"uname");
+    $highscore=getElementFromUinfo($uid,"score");
 
-    pushM("ID:$uid($uname) earn $score pts!");
-
-    $sql="update uinfo set score=$score where uid=$uid;";
-
-    $pdo->query($sql);
+    //ハイスコア更新時だけupする
+    if($highscore<$score){
+        $sql="update uinfo set score=$score where uid=$uid;";
+        $pdo->query($sql);
+    }
     print("successful");
 }
 
