@@ -426,7 +426,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
   if(checkCommand("insert")){
     for($i=1;$i<=20;$i++){
       $a=$i*10;
-      $sql="insert into uinfo(uid,uname,score,rate) values($i,'player$i',$i,$a);";
+      $sql="insert into uinfo(uid,uname,score,rate) values($i'player$i',$i,$a);";
       $count=$pdo->exec($sql);
     }
     

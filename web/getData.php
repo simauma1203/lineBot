@@ -42,7 +42,6 @@ function pushM($text){
 
 
 $postText = $_POST['text'];
-pushM($postText);
 
 //db接続
 $url=parse_url(getenv('DATABASE_URL'));
@@ -51,7 +50,6 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    pushM("OK!");
     //$postText='/uploadScore {"uid":10,"score":114514}';
     //$postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
@@ -132,12 +130,14 @@ elseif(mb_strpos($postText,"/uploadScore")===0){
     $len=strlen("/uploadScore");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
     
-    $upmap=json_decode($json,true);
+    pushM($json);
 
-    $uid=$upmap["uid"];
-    $score=$upmap["score"];
+    $data=json_decode($json,true);
 
-    push($groupId,"$uid さんが $score とったよ");
+    $uid=$data["uid"];
+    $score=$data["score"];
+
+    pushM("ID:$uid earn $score pts!");
 
     $sql="update set score=$score where uid=$uid;";
 
