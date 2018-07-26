@@ -38,6 +38,8 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
+    push($groupId,"pushs");
+    //$postText='/uploadScore {"uid":10,"score":114514}';
     //$postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
 }
