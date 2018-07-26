@@ -97,7 +97,7 @@ else if($postText=="/getRateRanking"){
     print(json_encode($superArr));
 }
 
-//マップをアップロード
+//---マップをアップロード---
 //mapDB require :uid,mapcode,rate
 elseif(mb_strpos($postText,"/uploadMap")===0){
     $len=strlen("/uploadMap");
@@ -127,6 +127,8 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     
     print("successful");
 }
+
+
 elseif(mb_strpos($postText,"/uploadScore")===0){
     $len=strlen("/uploadScore");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
@@ -151,44 +153,47 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $len=strlen("/getMap");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
     //print($json);
-    $prof=json_decode($json,true);
+    $data=json_decode($json,true);
     //print($prof);
-    $uname=$prof["uname"];
-    $rate=$prof["rate"];
-    $played=$prof["handle"];
+    $uid=$data["uid"];
+    $played=$prof["playedhandle"];
+    $rate =getElementFromUinfo($uid,"rate");
+
 
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
-    //配列にする
+
+    //stmtを配列にする
     $data=[];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
-    //$data = $stmt->fetchAll();
 
-    //ソート用配列
+    //ソート用配列 rateの差(>0)が小さい順にsortする
     foreach($data as $val){
         $sort[]=abs($rate-$val["rate"]);
     }
     //sort
     array_multisort($sort, SORT_ASC, $data);
 
-    
+    //先頭から探索
     foreach($data as $data_){
-        if($data_["uname"]!=$uname){//持ち主が自分ではない
-            if(!in_array($data_["handle"],$played)){//handleが未プレイ
-                //数字だけだと文字扱いにされそう
-                //$data_["uname"]=(string)$data_["uname"];
-                //substr($data_["mapcode"]1,);
+        if($data_["uid"]!=$uid){//持ち主が自分ではない
+            if(!in_array($data_["handle"],$played,true)){///未プレイかたしかめる
 
-                //print(json_decode($data_["mapcode"]));
-                //$data_["mapcode"]=json_encode($data_["mapcode"]);
-                //print(json_decode($data_["mapcode"]));
-                $ret=$data_;
+                $ret_=$data_;
                 break;
             }
         }
     }
+    $ret=[
+        "uid" => $ret_["uid"],
+        "uname" => getElementFromUinfo($ret_["uid"],"uname"),
+        "rate" => $ret_["rate"],
+        "mapcodejson" => $ret_["mapcodejson"],
+        "handle" => $ret_["handle"]
+    ];
+    pushM(print_r($ret,true));
 
     header('Content-type: application/json;');
     print(json_encode($ret));
