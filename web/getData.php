@@ -179,11 +179,12 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     pushM("sort comp");
 
+    $isEnough=false;
     //先頭から探索
     foreach($data as $data_){
-        if($data_["uid"]!=$uid){//持ち主が自分ではない
+        if($data_["uid"]!==$uid){//持ち主が自分ではない
             if(!in_array($data_["handle"],$played,true)){///未プレイかたしかめる
-
+                $isEnough=true;
                 $ret_=$data_;
                 break;
             }
@@ -199,6 +200,10 @@ elseif(mb_strpos($postText,"/getMap")===0){
         "mapcodejson" => $ret_["mapcodejson"],
         "handle" => $ret_["handle"]
     ];
+    
+    if($isEnogh===false){
+        $ret["uid"]=-1;
+    }
     
 
     header('Content-type: application/json;');
