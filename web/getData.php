@@ -4,7 +4,7 @@ $postText = $_POST['text'];
 
 $accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
 $channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
-$groupod="C8727e59e0381bc8c6a7fef3f7f8e4cf";
+$groupId="C8727e59e0381bc8c6a7fef3f7f8e4cf";
 function push($gId,$message){
     global $accessToken,$channelSecret;  
     $url = 'https://api.line.me/v2/bot/message/push';
@@ -117,8 +117,17 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
 }
 elseif(mb_strpos($postText,"/uploadScore")===0){
     $len=strlen("/uploadScore");
-    $sql=substr($postText,$len+1,strlen($postText)-$len-1);
+    $json=substr($postText,$len+1,strlen($postText)-$len-1);
     
+    $upmap=json_decode($json,true);
+
+    $uid=$upmap["uid"];
+    $score=$upmap["score"];
+
+    push($groupId,"$uid さんが $score とったよ");
+
+    $sql="update set score=$score where uid=$uid;";
+
     $pdo->query($sql);
     print("successful");
 }
