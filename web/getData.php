@@ -1,7 +1,6 @@
 <?php
 
-$postText = $_POST['text'];
-
+//---
 $accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
 $channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
 $groupId="C8727e59e0381bc8c6a7fef3f7f8e4cf2";
@@ -30,6 +29,20 @@ function push($gId,$message){
   curl_exec($curl);
   curl_close($curl);
 }
+function pushM($text){
+    global $groupId;
+    $message = array(
+        "type" => "text",
+        "text" => $text
+    );
+    push($groupId,$message);
+}
+//---
+
+
+
+$postText = $_POST['text'];
+pushM($postText);
 
 //db接続
 $url=parse_url(getenv('DATABASE_URL'));
@@ -38,11 +51,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    $message = array(
-        "type" => "text",
-        "text" => "ok"
-    );
-    push($groupId,$message);
+    pushM("OK!");
     //$postText='/uploadScore {"uid":10,"score":114514}';
     //$postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
     //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
@@ -118,8 +127,6 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     print_r($data["mapcode"]);
     
     print("successful");
-
-
 }
 elseif(mb_strpos($postText,"/uploadScore")===0){
     $len=strlen("/uploadScore");
@@ -222,12 +229,4 @@ function getElementFromUinfo($uid,$elementName){
         $ret=$row[$elementName];
     }
     return $ret;
-}
-function pushM($text){
-    global $groupId;
-    $message = array(
-        "type" => "text",
-        "text" => $text
-    );
-    push($groupId,$message);
 }
