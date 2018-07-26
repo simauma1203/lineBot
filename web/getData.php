@@ -136,7 +136,7 @@ elseif(mb_strpos($postText,"/uploadScore")===0){
 
     $uid=$data["uid"];
     $score=$data["score"];
-    $uname=getElementFromUinfo($uid,"name");
+    $uname=getElementFromUinfo($uid,"uname");
 
     pushM("ID:$uid($uname) earn $score pts!");
 
