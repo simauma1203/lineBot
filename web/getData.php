@@ -219,7 +219,7 @@ function getHandle(){
     global $pdo;
     $ret=getSysVar("nexthandle");
     updateSysVar("nexthandle",$ret+1);
-    return ret;
+    return $ret;
 }
 
 function getElementFromUinfo($uid,$elementName){
