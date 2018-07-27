@@ -217,7 +217,7 @@ elseif(mb_strpos($postText,"/userRegister")===0){
 
 elseif(mb_strpos($postText,"/getUname")===0){
 
-    $len=strlen("/userUname");
+    $len=strlen("/getUname");
     $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
 
     $uid=intval($uidStr);
