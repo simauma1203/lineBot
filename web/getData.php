@@ -118,7 +118,7 @@ elseif(mb_strpos($postText,"/uploadMap")===0){
     $handle=getHandle();
 
     $sql="insert into map values($uid,'$mapcodejson',$rate,$handle);";
-    pushM($sql);
+    //pushM($sql);
     $pdo->query($sql);
 
     header('Content-type: application/json;');
@@ -237,7 +237,7 @@ elseif(mb_strpos($postText,"/updateRate")===0){
 
     $uid=$data["uid"];
     $newRate=$data["rate"];
-    pushM("$uid 's rate has risen by $newRate");
+    //pushM("$uid 's rate has risen by $newRate");
     updateUser($uid,"rate",$newRate);
 
 }
