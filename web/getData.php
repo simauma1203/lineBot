@@ -229,6 +229,18 @@ elseif(mb_strpos($postText,"/getUname")===0){
     header('Content-type: application/json;');
     print($uname);
 }
+elseif(mb_strpos($postText,"/updateRate")===0){
+    $len=strlen("/updateRate");
+    $json=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $data=json_decode($json,true);
+
+    $uid=$data["uid"];
+    $newRate=$data["newrate"];
+
+    updateUser($uid,"rate",$newRate);
+
+}
 
 
 
@@ -262,6 +274,15 @@ function getId(){
     updateSysVar("nextid",$ret+1);
     return $ret;
 }
+
+//unameの変更にはつかえない
+function updateUser($uid,$name,$value){
+    global $pdo;
+    $sql="update uinfo set $name=$value where uid=$uid;";
+    $pdo->query($sql);
+
+}
+
 
 function getElementFromUinfo($uid,$elementName){
     global $pdo;
