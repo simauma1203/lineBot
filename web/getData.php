@@ -237,7 +237,7 @@ elseif(mb_strpos($postText,"/updateRate")===0){
 
     $uid=$data["uid"];
     $newRate=$data["newrate"];
-
+    pushM("$uid 's rate has risen by $newRate");
     updateUser($uid,"rate",$newRate);
 
 }
