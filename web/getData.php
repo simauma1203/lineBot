@@ -58,7 +58,9 @@ if($postText==""){
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
+    echo "<PRE>";
     print_r($data);
+    echo "<PRE>";
 
     print("<br><br><br>----- SHARED MAP TABLE -----<br><br>");
 
@@ -68,7 +70,9 @@ if($postText==""){
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
+    echo "<PRE>";
     print_r($data);
+    echo "<PRE>";
 
 }
 
