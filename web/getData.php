@@ -222,9 +222,9 @@ elseif(mb_strpos($postText,"/getUname")===0){
 
     $uid=intval($uidStr);
 
-    pushM("ID:$uid 's name is...");
+    //pushM("ID:$uid 's name is...");
     $uname=getElementFromUinfo($uid,"uname");
-    pushM("$uname desuyo");
+    //pushM("$uname desuyo");
 
     header('Content-type: application/json;');
     print($uname);
