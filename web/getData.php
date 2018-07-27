@@ -236,7 +236,7 @@ elseif(mb_strpos($postText,"/updateRate")===0){
     $data=json_decode($json,true);
 
     $uid=$data["uid"];
-    $newRate=$data["newrate"];
+    $newRate=$data["rate"];
     pushM("$uid 's rate has risen by $newRate");
     updateUser($uid,"rate",$newRate);
 
