@@ -50,9 +50,26 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
-    //$postText='/uploadScore {"uid":10,"score":114514}';
-    //$postText='/uploadMap {"uname":"keidaroo2","mapcode":["114","514"],"rate":810,"nexthdl":66}';
-    //$postText="/uploadScore insert into score(uname,score,instdate) values('player?',15,now())";;
+    print("<br>-------- DATABASE --------");
+    print("<br><br>----- USER INFORMATION TABLE -----<br><br>");
+    $sql="select * from uinfo;";
+    $stmt=$pdo->query($sql);
+    $data=[];
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        $data[]=$row;
+    }
+    print_r($data);
+
+    print("<br><br><br>----- SHARED MAP TABLE -----<br><br>");
+
+    $sql="select * from map;";
+    $stmt=$pdo->query($sql);
+    $data=[];
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        $data[]=$row;
+    }
+    print_r($data);
+
 }
 
 
