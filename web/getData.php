@@ -278,6 +278,8 @@ elseif(mb_strpos($postText,"/getUname")===0){
     header('Content-type: application/json;');
     print($uname);
 }
+
+
 elseif(mb_strpos($postText,"/updateRate")===0){
     $len=strlen("/updateRate");
     $json=substr($postText,$len+1,strlen($postText)-$len-1);
@@ -290,7 +292,7 @@ elseif(mb_strpos($postText,"/updateRate")===0){
     updateUser($uid,"rate",$newRate);
 
 
-    $oldHighest=getElementFromUinfo("highestrate");
+    $oldHighest=getElementFromUinfo($uid,"highestrate");
     if($newRate>$oldHighest){
         updateUser($uid,"highestrate",$newRate);
     }
