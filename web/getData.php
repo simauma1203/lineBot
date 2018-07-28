@@ -318,8 +318,6 @@ elseif(mb_strpos($postText,"/incWins")===0){
     $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
 
     $uid=intval($uidStr);
-
-    $uid=$data["uid"];
     
     $oldMP=getElementFromUinfo($uid,"matchesplayed");
     updateUser($uid,"matchesplayed",$oldMP+1);
