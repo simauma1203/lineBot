@@ -120,6 +120,33 @@ else if($postText=="/getRateRanking"){
     print(json_encode($superArr));
 }
 
+
+//れーとらんきんぐ
+elseif(mb_strpos($postText,"/getUinfo")===0){
+
+    $len=strlen("/getUinfo");
+    $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $uid=intval($uidStr);
+    //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
+    $cnt=0;
+    $subArr[]=[];
+    //score(int) の降順
+    $sql="SELECT * FROM uinfo where uid=$uid;";
+    $stmt=$pdo->query($sql);//実行
+    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)) {
+        $subArr[$cnt]=$row;
+        $cnt++;
+        if($row==""){
+            break;
+        }
+    }
+    $superArr=["data"=>$subArr,"count"=>$cnt];
+    //printな文字列をjsonで送信
+    header('Content-type: application/json;');
+    print(json_encode($superArr));
+}
+
 //---マップをアップロード---
 //mapDB require :uid,mapcode,rate
 elseif(mb_strpos($postText,"/uploadMap")===0){
