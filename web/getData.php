@@ -211,7 +211,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     $ret=[
         "uid" => $ret_["uid"],
-        "uname" => getElementFromUinfo($ret_["uid"],"uname"),
+        "uname" => getElementFromUinfo($ret_["uid"],"uname"),//ここを追加することでreqを一回にする
         "rate" => $ret_["rate"],
         "mapcodejson" => $ret_["mapcodejson"],
         "handle" => $ret_["handle"]
@@ -228,8 +228,8 @@ elseif(mb_strpos($postText,"/userRegister")===0){
     $uname=substr($postText,$len+1,strlen($postText)-$len-1);
 
     $uid=getId();
-
-    $sql="insert into uinfo values($uid,'$uname',0,0);";
+    //uid uname score rate highestRate wins matchesPlayed
+    $sql="insert into uinfo values($uid,'$uname',0,0,0,0,0);";
     $pdo->query($sql);
 
     header('Content-type: application/json;');
@@ -260,8 +260,32 @@ elseif(mb_strpos($postText,"/updateRate")===0){
     $newRate=$data["rate"];
     //pushM("$uid 's rate has risen by $newRate");
     updateUser($uid,"rate",$newRate);
-
 }
+
+//matchedPlayedをインクリメント
+elseif(mb_strpos($postText,"/incMatchesPlayed")===0){
+    $len=strlen("/incMatchesPlayed");
+    $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $uid=intval($uidStr);
+
+    $oldMP=getElementFromUinfo($uid,"matchesplayed");
+    updateUser($uid,"matchesplayed",$oldMP+1);
+}
+
+//winsをインクリメント
+elseif(mb_strpos($postText,"/incWins")===0){
+    $len=strlen("/incWins");
+    $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
+
+    $uid=intval($uidStr);
+
+    $uid=$data["uid"];
+    
+    $oldWins=getElementFromUinfo($uid,"wins");
+    updateUser($uid,"wins",$oldWins+1);
+}
+
 
 
 
@@ -287,6 +311,7 @@ function getHandle(){
     updateSysVar("nexthandle",$ret+1);
     return $ret;
 }
+
 
 //空きユーザーID取得 
 function getId(){
