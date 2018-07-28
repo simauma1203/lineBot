@@ -99,6 +99,8 @@ if($postText=="/getScoreRanking"){
     print(json_encode($superArr));
 
 }
+
+//れーとらんきんぐ
 else if($postText=="/getRateRanking"){
     //subArr,superArr : unity側で配列を仮想配列に指定しないと動かない？
     $cnt=0;
@@ -121,7 +123,6 @@ else if($postText=="/getRateRanking"){
 }
 
 
-//れーとらんきんぐ
 elseif(mb_strpos($postText,"/getUinfo")===0){
 
     $len=strlen("/getUinfo");
@@ -256,7 +257,7 @@ elseif(mb_strpos($postText,"/userRegister")===0){
 
     $uid=getId();
     //uid uname score rate highestRate wins matchesPlayed
-    $sql="insert into uinfo values($uid,'$uname',0,0,0,0,0);";
+    $sql="insert into uinfo values($uid,'$uname',0,1000,0,0,0);";
     $pdo->query($sql);
 
     header('Content-type: application/json;');
@@ -287,6 +288,15 @@ elseif(mb_strpos($postText,"/updateRate")===0){
     $newRate=$data["rate"];
     //pushM("$uid 's rate has risen by $newRate");
     updateUser($uid,"rate",$newRate);
+
+
+    $oldHighest=getElementFromUinfo("highestrate");
+    if($newRate>$oldHighest){
+        updateUser($uid,"highestrate",$newRate);
+    }
+
+
+
 }
 
 //matchedPlayedをインクリメント
@@ -309,6 +319,9 @@ elseif(mb_strpos($postText,"/incWins")===0){
 
     $uid=$data["uid"];
     
+    $oldMP=getElementFromUinfo($uid,"matchesplayed");
+    updateUser($uid,"matchesplayed",$oldMP+1);
+
     $oldWins=getElementFromUinfo($uid,"wins");
     updateUser($uid,"wins",$oldWins+1);
 }
