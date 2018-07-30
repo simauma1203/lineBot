@@ -50,6 +50,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 
 if($postText==""){
+    echo "<PRE>";
     print("<br>-------- DATABASE --------");
     print("<br><br>----- USER INFORMATION TABLE -----<br><br>");
     $sql="select * from uinfo;";
@@ -58,9 +59,8 @@ if($postText==""){
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
-    echo "<PRE>";
     print_r($data);
-    echo "<PRE>";
+
 
     print("<br><br><br>----- SHARED MAP TABLE -----<br><br>");
 
@@ -70,7 +70,6 @@ if($postText==""){
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
-    echo "<PRE>";
     print_r($data);
     echo "<PRE>";
 
