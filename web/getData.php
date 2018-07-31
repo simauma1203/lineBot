@@ -405,10 +405,11 @@ function addHistory($id,$hdl){
 
     //arrにpush
     $arr[]=$hdl;
+
     //arrをjsonにエンコード
     $json=json_encode($arr);
 
-    $sql="update history set json='$json' where uid=$uid";
+    $sql="update history set json='$json' where uid=$uid;";
     $pdo->query($sql);
 
 
