@@ -391,7 +391,7 @@ function addHistory($id,$hdl){
 
 
     //jsonを取得
-    $sql="slelect * from history where uid=$uid;";
+    $sql="select * from history where uid=$uid;";
     $stmt=$pdo->query($sql);
     //jsonから配列に
     $ret="";
