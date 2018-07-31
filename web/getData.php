@@ -194,7 +194,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     $rate =getElementFromUinfo($uid,"rate");
 
-    $sql="select * from map order by rand();";
+    $sql="select * from map order by random();";
     $stmt=$pdo->query($sql);
 
     //stmtを配列にする
