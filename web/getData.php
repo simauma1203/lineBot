@@ -1,45 +1,7 @@
 <?php
 
 //---
-$accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
-$channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
-$groupId="C8727e59e0381bc8c6a7fef3f7f8e4cf2";
-function push($gId,$message){
-    global $accessToken,$channelSecret;  
-    $url = 'https://api.line.me/v2/bot/message/push';
-    // データの受信(するものないので不要?)
-    $raw = file_get_contents('php://input');
-    $receive = json_decode($raw, true);
-    // イベントデータのパース(不要？)
-    $event = $receive['events'][0];
-    // ヘッダーの作成
-    $headers = ['Content-Type: application/json','Authorization: Bearer '.$accessToken];
-    // 送信するメッセージ作成
-    $body = json_encode(array('to' => $gId,'messages'=> array($message)));  // 複数送る場合は、array($mesg1,$mesg2) とする。
-    // 送り出し用
-    $options = [
-      CURLOPT_URL => $url,
-      CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_HTTPHEADER => $headers,
-      CURLOPT_POSTFIELDS => $body
-    ];
-  $curl = curl_init();
-  curl_setopt_array($curl, $options);
-  curl_exec($curl);
-  curl_close($curl);
-}
-function pushM($text){
-    global $groupId;
-    $message = array(
-        "type" => "text",
-        "text" => $text
-    );
-    push($groupId,$message);
-}
 //---
-
-
 
 $postText = $_POST['text'];
 
@@ -232,7 +194,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     $rate =getElementFromUinfo($uid,"rate");
 
-    $sql="select * from map;";
+    $sql="select * from map order by rand();";
     $stmt=$pdo->query($sql);
 
     //stmtを配列にする
@@ -417,36 +379,3 @@ function getElementFromUinfo($uid,$elementName){
     return $ret;
 }
 
-function addHistory($id,$hdl){
-    global $pdo;
-
-
-    //jsonを取得
-    $sql="select * from history where uid=$uid;";
-    $stmt=$pdo->query($sql);
-    //jsonから配列に
-    $ret="";
-    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-        $ret=$row["json"];
-    }
-
-    //jsonからデコード
-    $arr=[];
-    $arr=json_decode($ret,true);
-
-    //arrにpush
-    $arr[]=$hdl;
-
-    //arrをjsonにエンコード
-    $json=json_encode($arr);
-
-    $sql="update history set json='$json' where uid=$uid;";
-    $pdo->query($sql);
-
-
-    //配列
-
-    
-}
-
-//49~71
