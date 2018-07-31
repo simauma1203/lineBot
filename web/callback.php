@@ -424,9 +424,10 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     );
   }
   if(checkCommand("insert")){
-    for($i=1;$i<=20;$i++){
-      $a=$i*10;
-      $sql="insert into uinfo(uid,uname,score,rate) values($i'player$i',$i,$a);";
+    $arr=[];
+    $json=json_encode($arr);
+    for($i=0+49;$i<22+49;$i++){
+      $sql="insert history value($i,$json);";
       $count=$pdo->exec($sql);
     }
     

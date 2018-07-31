@@ -256,11 +256,18 @@ elseif(mb_strpos($postText,"/userRegister")===0){
 
     $uid=getId();
     //uid uname score rate highestRate wins matchesPlayed
-    $sql="insert into uinfo values($uid,'$uname',0,1000,0,0,0);";
+    $sql="insert into uinfo values($uid,'$uname',0,1000,1000,0,0);";
+    $pdo->query($sql);
+
+    $arr=[];
+    $json=json_encode($arr);
+    $sql="insert into history values($uid,'$json');";
     $pdo->query($sql);
 
     header('Content-type: application/json;');
     print($uid);
+
+
 }
 
 elseif(mb_strpos($postText,"/getUname")===0){
@@ -378,3 +385,36 @@ function getElementFromUinfo($uid,$elementName){
     }
     return $ret;
 }
+
+function addHistory($id,$hdl){
+    global $pdo;
+
+
+    //jsonを取得
+    $sql="slelect * from history where uid=$uid;";
+    $stmt=$pdo->query($sql);
+    //jsonから配列に
+    $ret="";
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $ret=$row["json"];
+    }
+
+    //jsonからデコード
+    $arr=[];
+    $arr=json_decode($ret,true);
+
+    //arrにpush
+    $arr[]=$hdl;
+    //arrをjsonにエンコード
+    $json=json_encode($arr);
+
+    $sql="update history set json='$json' where uid=$uid";
+    $pdo->query($sql);
+
+
+    //配列
+
+    
+}
+
+//49~71
