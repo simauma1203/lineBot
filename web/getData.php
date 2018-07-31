@@ -52,7 +52,7 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 if($postText==""){
     echo "<PRE>";
     print("<br>-------- DATABASE --------");
-    print("<br><br>----- USER INFORMATION TABLE -----<br><br>");
+    print("<br><br>----- UINFO TABLE -----<br><br>");
     $sql="select * from uinfo;";
     $stmt=$pdo->query($sql);
     $data=[];
@@ -62,7 +62,7 @@ if($postText==""){
     print_r($data);
 
 
-    print("<br><br><br>----- SHARED MAP TABLE -----<br><br>");
+    print("<br><br><br><br>----- MAP TABLE -----<br><br>");
 
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
@@ -71,6 +71,17 @@ if($postText==""){
         $data[]=$row;
     }
     print_r($data);
+
+    print("<br><br><br><br>----- HISTORY TABLE -----<br><br>");
+
+    $sql="select * from history;";
+    $stmt=$pdo->query($sql);
+    $data=[];
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        $data[]=$row;
+    }
+    print_r($data);
+
     echo "<PRE>";
 
 }
