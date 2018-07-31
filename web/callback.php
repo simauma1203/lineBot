@@ -427,7 +427,7 @@ if($userId=='U51eca766d3d062b3a121756b96f51bff'){
     $arr=[];
     $json=json_encode($arr);
     for($i=0+49;$i<22+49;$i++){
-      $sql="insert history value($i,$json);";
+      $sql="insert history value($i,'$json');";
       $count=$pdo->exec($sql);
     }
     
