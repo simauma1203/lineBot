@@ -206,9 +206,20 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $data=json_decode($json,true);
     //print($prof);
     $uid=$data["uid"];//自分の名前
-    $played=$prof["playedhandle"];//自分の対戦履歴
-    $rate =getElementFromUinfo($uid,"rate");
 
+    //$played=$prof["playedhandle"];//自分の対戦履歴
+    
+    //対戦履歴
+    $sql="select * from history where uid=$uid;";
+    $stmt=$pdo->query($sql);
+    while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+        $ret=$row["json"];
+    }
+    $played=[];
+    $played=json_decode($ret,true);
+    
+
+    $rate =getElementFromUinfo($uid,"rate");
 
     $sql="select * from map;";
     $stmt=$pdo->query($sql);
@@ -230,11 +241,20 @@ elseif(mb_strpos($postText,"/getMap")===0){
     foreach($data as $data_){
         if($data_["uid"]!==$uid){//持ち主が自分ではない
             if(!in_array($data_["handle"],$played,true)){///未プレイかたしかめる
+                //対戦履歴の配列にpush
+                $played[]=$data_["handle"];
+
                 $ret_=$data_;
                 break;
             }
         }
     }
+
+    //対戦履歴更新
+    $json=json_encode($played);
+    $sql="update history set json='$json' where uid=$uid;";
+    $pdo->query($sql);
+
 
     $ret=[
         "uid" => $ret_["uid"],
