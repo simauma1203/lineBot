@@ -191,10 +191,6 @@ elseif(mb_strpos($postText,"/getMap")===0){
     }
     $played=[];
     $played=json_decode($ret,true);
-    
-
-    //中断された時のためにrateを30引いておく
-    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")-30);
 
 
     $rate =getElementFromUinfo($uid,"rate");
@@ -235,6 +231,8 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $sql="update history set json='$json' where uid=$uid;";
     $pdo->query($sql);
 
+    //中断された時のためにrateを30引いておく
+    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")-30);
 
     $ret=[
         "uid" => $ret_["uid"],
