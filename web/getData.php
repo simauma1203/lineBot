@@ -36,7 +36,7 @@ if($postText==""){
 
     print("<br><br><br><br>----- HISTORY TABLE -----<br><br>");
 
-    $sql="select * from history;";
+    $sql="select * from history order by random();";
     $stmt=$pdo->query($sql);
     $data=[];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
