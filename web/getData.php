@@ -194,7 +194,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     $rate =getElementFromUinfo($uid,"rate");
 
-    $sql="SELECT * FROM map ORDER BY random();";
+    $sql="SELECT * FROM map;";
     $stmt=$pdo->query($sql);
 
     //stmtを配列にする
@@ -203,9 +203,11 @@ elseif(mb_strpos($postText,"/getMap")===0){
         $data[]=$row;
     }
 
+
+
     //ソート用配列 rateの差(>0)が小さい順にsortする
     foreach($data as $val){
-        $sort[]=abs($rate-$val["rate"]);
+        $sort[]=abs($rate-$val["rate"]-rand(0,50));
     }
     //sort
     array_multisort($sort, SORT_ASC, $data);
