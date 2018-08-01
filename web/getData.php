@@ -13,8 +13,8 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 if($postText==""){
     echo "<PRE>";
-    print("<br><h2>-------- DATABASE --------></h2><br>");
-    print("<br><br><h3>----- UINFO TABLE -----</h3><br><br>");
+    print("<br><h1>-------- DATABASE --------></h1><br>");
+    print("<br><br><h2>----- UINFO TABLE -----</h2><br><br>");
     $sql="select * from uinfo order by uid;";
     $stmt=$pdo->query($sql);
     $data=[];
@@ -24,7 +24,7 @@ if($postText==""){
     print_r($data);
 
 
-    print("<br><br><br><h3>----- HISTORY TABLE -----</h3><br><br>");
+    print("<br><br><br><h2>----- HISTORY TABLE -----</h2><br><br>");
 
     $sql="select * from history order by uid;";
     $stmt=$pdo->query($sql);
@@ -34,7 +34,7 @@ if($postText==""){
     }
     print_r($data);
 
-    print("<br><br><br><h3>----- MAP TABLE -----</h3><br><br>");
+    print("<br><br><br><h2>----- MAP TABLE -----</h2><br><br>");
 
     $sql="select * from map order by handle;";
     $stmt=$pdo->query($sql);
