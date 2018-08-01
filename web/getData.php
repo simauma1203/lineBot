@@ -207,7 +207,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
 
     //ソート用配列 rateの差(>0)が小さい順にsortする
     foreach($data as $val){
-        $sort[]=abs($rate-$val["rate"]-rand(0,50));
+        $sort[]=abs($rate-$val["rate"]-rand(0,100));
     }
     //sort
     array_multisort($sort, SORT_ASC, $data);
