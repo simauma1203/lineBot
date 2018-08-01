@@ -331,7 +331,7 @@ elseif(mb_strpos($postText,"/incWins")===0){
     $uid=intval($uidStr);
 
     //中断した時用に引いた分をもどす
-    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")-30);
+    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")+30);
     
     $oldMP=getElementFromUinfo($uid,"matchesplayed");
     updateUser($uid,"matchesplayed",$oldMP+1);
