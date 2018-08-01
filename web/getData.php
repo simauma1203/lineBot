@@ -192,6 +192,10 @@ elseif(mb_strpos($postText,"/getMap")===0){
     $played=json_decode($ret,true);
     
 
+    //中断された時のためにrateを30引いておく
+    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")-30);
+
+
     $rate =getElementFromUinfo($uid,"rate");
 
     $sql="SELECT * FROM map;";
@@ -302,6 +306,7 @@ elseif(mb_strpos($postText,"/updateRate")===0){
 
 }
 
+//loseもしくはdraw時
 //matchedPlayedをインクリメント
 elseif(mb_strpos($postText,"/incMatchesPlayed")===0){
     $len=strlen("/incMatchesPlayed");
@@ -309,16 +314,23 @@ elseif(mb_strpos($postText,"/incMatchesPlayed")===0){
 
     $uid=intval($uidStr);
 
+    //中断した時用に引いた分をもどす
+    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")+30);
+
     $oldMP=getElementFromUinfo($uid,"matchesplayed");
     updateUser($uid,"matchesplayed",$oldMP+1);
 }
 
-//winsをインクリメント
+//wins時
+//winsとmatchesplayedをインクリメント
 elseif(mb_strpos($postText,"/incWins")===0){
     $len=strlen("/incWins");
     $uidStr=substr($postText,$len+1,strlen($postText)-$len-1);
 
     $uid=intval($uidStr);
+
+    //中断した時用に引いた分をもどす
+    updateUser($uid,"rate",getElementFromUinfo($uid,"rate")-30);
     
     $oldMP=getElementFromUinfo($uid,"matchesplayed");
     updateUser($uid,"matchesplayed",$oldMP+1);
