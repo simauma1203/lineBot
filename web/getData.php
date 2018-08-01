@@ -13,9 +13,9 @@ $pdo=new PDO($dsn,$url['user'],$url['pass']);
 
 if($postText==""){
     echo "<PRE>";
-    print("<br>-------- DATABASE --------");
-    print("<br><br>----- UINFO TABLE -----<br><br>");
-    $sql="select * from uinfo;";
+    print("<br><h2>-------- DATABASE --------></h2><br>");
+    print("<br><br><h3>----- UINFO TABLE -----</h3><br><br>");
+    $sql="select * from uinfo order by uid;";
     $stmt=$pdo->query($sql);
     $data=[];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -24,9 +24,9 @@ if($postText==""){
     print_r($data);
 
 
-    print("<br><br><br><br>----- MAP TABLE -----<br><br>");
+    print("<br><br><br><h3>----- HISTORY TABLE -----</h3><br><br>");
 
-    $sql="select * from map;";
+    $sql="select * from history order by uid;";
     $stmt=$pdo->query($sql);
     $data=[];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -34,15 +34,16 @@ if($postText==""){
     }
     print_r($data);
 
-    print("<br><br><br><br>----- HISTORY TABLE -----<br><br>");
+    print("<br><br><br><h3>----- MAP TABLE -----</h3><br><br>");
 
-    $sql="select * from history order by random();";
+    $sql="select * from map order by handle;";
     $stmt=$pdo->query($sql);
     $data=[];
     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         $data[]=$row;
     }
     print_r($data);
+
 
     echo "<PRE>";
 
