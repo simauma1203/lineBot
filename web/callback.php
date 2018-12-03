@@ -10,11 +10,6 @@ $to=new TwistOAuth(
   getenv('twiATS')//twiATS
 );
 
-//lineAT
-/*
-$accessToken = 'v61upqQUN/oE4yiwgij6n9IbIy8PbStfbvan2xrNlgg2OFswMK7XLBLO4rlyjmk30/a3EkNtwVqIcSMOOVgZMQlhlpF6hxuJXG6GugC9s/X008nYQ8s04Z38eb+l3zOaeIaUPWmQCv6ybAjtrIHdVAdB04t89/1O/w1cDnyilFU=';
-$channelSecret='dfd80f0736d4a20a2114cc6d4babcd5f';//lineCS
-*/
 $accessToken= getenv('lineAT');
 $channelSecret=getenv('lineCS');
 
@@ -25,10 +20,6 @@ function getProfile($uId){
   //$id='U51eca766d3d062b3a121756b96f51bff';
   $url = "https://api.line.me/v2/bot/profile/".$uId;
   
-  //$url = "https://api.line.me/v2/bot/group/".$gId."/member/".$uId;
-  /*if($gId!=""){
-    $url="https://api.line.me/v2/bot/room/".$rId."/member/".$uId;
-  }*/
   $context = [
         "http" => [
                 "method"  => "GET",
@@ -596,7 +587,7 @@ if($text=="ヴァネロピ"){
   ];
 }
 
-if($text=="イキリト"){
+if(strpos($text,'イキリト')!==FALSE){
   $response_format_text = [
     "type" => "text",
     "text" => "DQNほりまつにぶつかられたから舌打ちしたんだけど".PHP_EOL."掘り芋 「おいﾓｽｷｰﾄｫ↑、今ぶつかってこむとす！？」".PHP_EOL."ました 「(咄嗟に傘を構えて)儂とサシでやり合う気ですか？これでもや剣道二段(中学でとった)なので舐めない方が身の為ですよ？(反語)」".PHP_EOL."チキって泣きながら土下座された".PHP_EOL."ま、流石に掘り芋には湯加減するべきだったなぁww"

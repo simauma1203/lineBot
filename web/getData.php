@@ -247,6 +247,7 @@ elseif(mb_strpos($postText,"/getMap")===0){
     //print(json_encode(["a","b"]));
     //print(json_encode([1,2]));
 }
+
 elseif(mb_strpos($postText,"/userRegister")===0){
 
     $len=strlen("/userRegister");
