@@ -643,13 +643,13 @@ if($text=="ビンビン"){
     "duration"=>"22000"
   ];
 }
-
+/*
 if($restype=="join"){
   $response_format_text = [
     "type" => "text",
     "text" => "( *ﾟ▽ﾟ*  っ)З ぽぽー！"
   ];
-}
+}*/
 
 if($text=="π"){
   $response_format_text = [
