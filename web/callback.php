@@ -499,6 +499,11 @@ if($text=="ごちうさ"){
   getTweet("usagi_anime","5");
 }
 
+if($text=="ゆゆうた"){
+  getTweet("kinkyunoyuyuta","7");
+}
+
+
 if($text=="やっちゃえ"){
   $response_format_text = [
     "type" => "text",
