@@ -4,10 +4,15 @@
 //twitter init
 require 'TwistOAuth.phar';
 $to=new TwistOAuth(
+  /*
   getenv('twiCK'),//twiCK
   getenv('twiCS'),//twiCS
   getenv('twiAT'),//twiAT
-  getenv('twiATS')//twiATS
+  getenv('twiATS')//twiATS*/
+  "R0Cknwp00iUqqKqLV2AfKH3yo",
+  "ivmwN0ChX6I29Er8033HK1YVwGB6XoNsPp1HNscJcEavVM7Dy5",
+  "843521372437409793-0Fju69RU7a26LFkgaiMQXoV0ZvHebrS",
+  "XXN2qHM4BUx1Bdxsni95lKFHu2LhZbqUTREpVJuwbW8l8"
 );
 
 $accessToken= getenv('lineAT');
