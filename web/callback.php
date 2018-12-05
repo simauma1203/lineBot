@@ -521,7 +521,10 @@ if(strpos($text,'ほりこしガチャ')!==FALSE){
   $gacha="";
   $rare="";
   $kaisuu=10;
-  if(strpos($text,'100連')!==FALSE){
+  if(strpos($text,'50')!==FALSE){
+    $kaisuu=50;
+  }
+  if(strpos($text,'100')!==FALSE){
     $kaisuu=100;
   }
   for($i=1;$i<=$kasuu;$i++){
