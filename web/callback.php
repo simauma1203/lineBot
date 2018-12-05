@@ -527,7 +527,7 @@ if(strpos($text,'ほりこしガチャ')!==FALSE){
   if(strpos($text,'100')!==FALSE){
     $kaisuu=100;
   }
-  for($i=1;$i<=$kasuu;$i++){
+  for($i=1;$i<=$kaisuu;$i++){
     $r=rand(1,100);
 
     if($r<=2){
