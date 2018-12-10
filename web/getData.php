@@ -1,7 +1,7 @@
 <?php
-
-//---
-//---
+//PERVERSE通信部分
+//Unity->WWWのPOSTを受け取ってもJSONを返す
+//
 
 $postText = $_POST['text'];
 
