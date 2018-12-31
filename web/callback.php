@@ -712,7 +712,7 @@ if($text=="私の今年の抱負は童貞卒業です"){
   else{$dotei="叶わない";}
   $response_format_text = [
     "type" => "text",
-    "text" => "今年もよろしくお願いします".PHP_EOL.PHP_EOL."今年の運勢 : ".$unsei[rand(0,15)].PHP_EOL."童貞卒業は".$dotei."ないでしょう"
+    "text" => "今年もよろしくお願いします".PHP_EOL.PHP_EOL."今年の運勢 : ".$unsei[rand(0,15)].PHP_EOL."童貞卒業は".$dotei."でしょう"
   ];
 }
 
