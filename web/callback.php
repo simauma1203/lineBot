@@ -681,20 +681,20 @@ if($text=="π"){
   ];
 }
 
-if(strpos($text,'あけおめガチャ')!==FALSE){
+if($text=="あけおめガチャ"){
   $response_format_text = [
     "type" => "template",
     "altText" => "†あけおめガチャ†",
     "template" => [
       "type" => "buttons",
-      "thumbnailImageUrl" => "hhttps://nizista.com/images/items/70c49a50b20811e681c75b4da4ea3608.jpg",
+      //"thumbnailImageUrl" => "hhttps://nizista.com/images/items/70c49a50b20811e681c75b4da4ea3608.jpg",
       "title" => "†あけおめガチャ†",
       "text" => "(実質おみくじ)",
       "actions" => [
         [
           "type" => "message",
           "label" => "おみくじをひく",
-          "text" => "今年の抱負は童貞卒業"
+          "text" => "私の今年の抱負は童貞卒業です"
         ],
         [
           "type" => "message",
@@ -706,7 +706,7 @@ if(strpos($text,'あけおめガチャ')!==FALSE){
   ];
 }
 
-if($text=="今年の抱負は童貞卒業"){
+if($text=="私の今年の抱負は童貞卒業です"){
   $unsei=["超大吉","大吉","大吉","中吉" ,"中吉","中吉","吉","吉","吉","吉","小吉","小吉","小吉","凶","凶","大凶"];
   $response_format_text = [
     "type" => "text",
