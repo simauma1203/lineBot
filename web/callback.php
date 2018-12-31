@@ -687,7 +687,7 @@ if($text=="あけおめガチャ"){
     "altText" => "†あけおめガチャ†",
     "template" => [
       "type" => "buttons",
-      //"thumbnailImageUrl" => "hhttps://nizista.com/images/items/70c49a50b20811e681c75b4da4ea3608.jpg",
+      "thumbnailImageUrl" => "hhttps://nizista.com/images/items/70c49a50b20811e681c75b4da4ea3608.jpg",
       "title" => "†あけおめガチャ†",
       "text" => "(実質おみくじ)",
       "actions" => [
@@ -710,7 +710,7 @@ if($text=="私の今年の抱負は童貞卒業です"){
   $unsei=["超大吉","大吉","大吉","中吉" ,"中吉","中吉","吉","吉","吉","吉","小吉","小吉","小吉","凶","凶","大凶"];
   $response_format_text = [
     "type" => "text",
-    "text" => "あけましておめでとうございます".PHP_EOL."今年もよろしくお願いします".PHP_EOL."今年の運勢 : ".$unsei[rand(0,16)].PHP_EOL."童貞卒業は叶わないでしょう"
+    "text" => "今年もよろしくお願いします".PHP_EOL.PHP_EOL."今年の運勢 : ".$unsei[rand(0,16)].PHP_EOL."童貞卒業は叶わないでしょう"
   ];
 }
 
