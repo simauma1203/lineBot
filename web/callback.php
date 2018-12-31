@@ -687,7 +687,7 @@ if($text=="あけおめガチャ"){
     "altText" => "†あけおめガチャ†",
     "template" => [
       "type" => "buttons",
-      "thumbnailImageUrl" => "hhttps://nizista.com/images/items/70c49a50b20811e681c75b4da4ea3608.jpg",
+      "thumbnailImageUrl" => "https://image1.shopserve.jp/funadomari.jp/pic-labo/llimg/N-500-2.jpg",
       "title" => "†あけおめガチャ†",
       "text" => "(実質おみくじ)",
       "actions" => [
