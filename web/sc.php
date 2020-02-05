@@ -16,4 +16,5 @@ if(strpos($weather_stat,'雨') !== false){
   $weather_char="☔️";
 }
 
-echo $weather_char;
+echo $weather_char.$h=($h+9)%23;
+var_dump(getdate());
