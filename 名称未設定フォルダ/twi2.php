@@ -5,7 +5,7 @@ $h=$today[hours];
 
 //if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
-$my_screen_name="tamaron_bot";
+$my_screen_name="tamaroning";
 $follow_limit=1370;
 $twitext="";
 //--------------------------------------auth init
