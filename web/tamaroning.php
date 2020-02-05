@@ -6,7 +6,7 @@ $h=$today[hours];
 //if($h!=5 && $h!=11 && $h!=17 && $h!=23)exit();
 
 //init
-require_once("./phpQuery-onefile.php");
+require_once("phpQuery-onefile.php");
 $my_screen_name="tamaroning";
 
 
@@ -27,7 +27,23 @@ $to=new TwistOAuth(
 $time_array=["🕛","🕐","🕑","🕒","🕓","🕔","🕕","🕖","🕗","🕘","🕙","🕚"];
 $time_char=$time_array[($h+9)%12];
 
-$weather_char="";
 
-$to->post('account/update_profile', array('name' => $time_char."まろん".$weather_char));
+$html = file_get_contents("https://www.jma.go.jp/jp/yoho/319.html");
+$weather_stat=phpQuery::newDocument($html)->find(".weather:eq(0)")->find("img")->attr("alt");
+
+$weather_char="";
+if(strpos($weather_stat,'曇り') !== false){
+  $weather_char="☁️";
+}
+if(strpos($weather_stat,'晴れ') !== false){
+  $weather_char="☀️";
+}
+if(strpos($weather_stat,'雨') !== false){
+  $weather_char="☔️";
+}
+
+
+$name=$time_char."まろん".$weather_char."(".$weather_stat.")";
+
+$to->post('account/update_profile', array('name' => $name));
 
