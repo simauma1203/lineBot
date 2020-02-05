@@ -41,7 +41,7 @@ if(strpos($weather_stat,'晴れ') !== false){
 if(strpos($weather_stat,'雨') !== false){
   $weather_char="☔️";
 }
-if(22<=h || h<=3){
+if(22<=$h || $h<=3){
   $weather_char="🌟";
 }
 
