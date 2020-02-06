@@ -32,14 +32,17 @@ $html = file_get_contents("https://www.jma.go.jp/jp/yoho/319.html");
 $weather_stat=phpQuery::newDocument($html)->find(".weather:eq(0)")->find("img")->attr("alt");
 
 $weather_char="";
-if(strpos($weather_stat,'曇り') !== false){
+if(strpos($weather_stat,'曇り') === 0){
   $weather_char="☁️";
 }
-if(strpos($weather_stat,'晴れ') !== false){
+if(strpos($weather_stat,'晴れ') ===0){
   $weather_char="☀️";
 }
-if(strpos($weather_stat,'雨') !== false){
+if(strpos($weather_stat,'雨') ===0){
   $weather_char="☔️";
+}
+if(strpos($weather_stat,'雪') ===0){
+  $weather_char="☃️";
 }
 if(22<=$h || $h<=3){
   $weather_char="🌟";
