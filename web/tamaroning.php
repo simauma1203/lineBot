@@ -48,7 +48,9 @@ if(22<=$h || $h<=3){
   $weather_char="🌟";
 }
 
+/*
 $name=$time_char."まろん".$weather_char."(".$weather_stat.")";
 
 $to->post('account/update_profile', array('name' => $name));
 
+*/
